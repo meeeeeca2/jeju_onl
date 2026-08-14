@@ -138,6 +138,10 @@ v1 페이즈 1–6 완료. 마지막 태그 snapshot/phase-6-onboarding-install.
 
 ## 세션 로그
 
+### 2026-08-14 — 공개용 README
+
+- README를 공개 레포용으로 다듬음. 시안 이미지, 면책, MIT. 로컬 경로·Team ID 없음.
+
 ### 2026-08-14 — 페이즈 6 완료 (v1 마침)
 
 - 신규 설치만 온보딩 3장. 저장된 settings.v1은 유지.
