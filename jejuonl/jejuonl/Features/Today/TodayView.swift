@@ -122,11 +122,10 @@ struct TodayView: View {
     }
 
     private func restrictedRow(_ items: [WasteItem]) -> some View {
-        let kind: ItemTile.SizeKind = items.count == 1 ? .large : .regular
-        return ScrollView(.horizontal) {
+        ScrollView(.horizontal) {
             HStack(alignment: .top, spacing: 14) {
                 ForEach(items, id: \.self) { item in
-                    ItemTile(item: item, kind: kind, onSelect: { showItem(item) })
+                    ItemTile(item: item, kind: .large, onSelect: { showItem(item) })
                 }
             }
         }
