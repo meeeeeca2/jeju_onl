@@ -4,7 +4,7 @@ struct MediumTodayView: View {
     let snapshot: DischargeSnapshot
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: 4) {
             HStack(alignment: .firstTextBaseline, spacing: 8) {
                 WidgetStatusMark(window: snapshot.window, compact: false)
                     .minimumScaleFactor(0.8)
@@ -25,7 +25,7 @@ struct MediumTodayView: View {
 
             HStack(spacing: 8) {
                 ForEach(snapshot.restrictedItems, id: \.self) { item in
-                    WidgetItemImage(item: item, side: 52, corner: 14)
+                    WidgetItemImage(item: item, side: 76, corner: 20)
                         .accessibilityLabel(item.koreanName)
                 }
                 Spacer(minLength: 0)
@@ -40,7 +40,7 @@ struct MediumTodayView: View {
                 .lineLimit(2)
                 .minimumScaleFactor(0.8)
         }
-        .padding(14)
+        .padding(10)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(mediumAccessibility)
     }

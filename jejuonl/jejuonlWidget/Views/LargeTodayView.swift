@@ -65,11 +65,11 @@ struct LargeTodayView: View {
         case 0:
             EmptyView()
         case 1:
-            WidgetItemImage(item: items[0], side: 88, corner: 24)
+            WidgetItemImage(item: items[0], side: 110, corner: 30)
         default:
-            HStack(spacing: -18) {
+            HStack(spacing: -28) {
                 ForEach(Array(items.prefix(3).enumerated()), id: \.element) { index, item in
-                    WidgetItemImage(item: item, side: 72, corner: 20)
+                    WidgetItemImage(item: item, side: 92, corner: 26)
                         .zIndex(Double(index))
                 }
             }
@@ -79,7 +79,7 @@ struct LargeTodayView: View {
     private var alwaysOnIcons: some View {
         HStack(spacing: 5) {
             ForEach(snapshot.alwaysOnItems, id: \.self) { item in
-                WidgetItemImage(item: item, side: 26, corner: 8)
+                WidgetItemImage(item: item, side: 36, corner: 11)
             }
         }
     }
@@ -111,7 +111,7 @@ struct LargeTodayView: View {
                         .font(.system(size: 10, weight: .bold))
                         .foregroundStyle(isToday ? WidgetPalette.hallabongInk : Color.secondary)
                     if let first = day.restrictedItems.first {
-                        WidgetItemImage(item: first, side: 32, corner: 9)
+                        WidgetItemImage(item: first, side: 42, corner: 12)
                     }
                 }
                 .frame(maxWidth: .infinity)

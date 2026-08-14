@@ -33,6 +33,12 @@
 - 오케스트레이터 재검증: 테스트 32 passed.
 - 다음: 페이즈 5 — 로컬 알림 + 알림 설정
 
+## phase-4-widget-polish (2026-08-14)
+
+- 위젯 판: `Color.clear` 제거. Small·Medium·Large 공통 `WidgetGlassPlate` — iOS 26 `glassEffect(.regular)` + `.ultraThinMaterial`, 그 이하는 material만. 불투명 흰/틸 없음. `contentMarginsDisabled` 유지.
+- 아이콘: Small 1/2/3 = 120 / 90(overlap 42) / 74(overlap 42, 한라봉 뱃지). Medium 제한 76. Large 히어로 110·멀티 92, 매일 36, 주간 42.
+- 검증: `jejuonl` 스킴 test 32 passed / build succeeded. 위젯 스킴 미실행. 커밋 없음.
+
 ## phase-3-app-today-week (2026-08-14)
 
 - 한 일:

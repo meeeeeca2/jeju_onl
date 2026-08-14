@@ -16,7 +16,7 @@ struct SmallTodayView: View {
             restrictedStage
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .padding(12)
+        .padding(9)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(WidgetCopy.statusAccessibility(snapshot))
     }
@@ -28,11 +28,11 @@ struct SmallTodayView: View {
         case 0:
             Color.clear
         case 1:
-            SingleRestrictedIcon(item: items[0], side: 96)
+            SingleRestrictedIcon(item: items[0], side: 120)
         case 2:
-            RestrictedFan(items: items, side: 64, overlap: 14, showsCountBadge: false)
+            RestrictedFan(items: items, side: 90, overlap: 42, showsCountBadge: false)
         default:
-            RestrictedFan(items: Array(items.prefix(3)), side: 52, overlap: 16, showsCountBadge: true)
+            RestrictedFan(items: Array(items.prefix(3)), side: 74, overlap: 42, showsCountBadge: true)
         }
     }
 }

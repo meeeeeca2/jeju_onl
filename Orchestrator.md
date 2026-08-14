@@ -137,6 +137,11 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 
 ## 세션 로그
 
+### 2026-08-14 — 위젯 유리 배경 + 아이콘 확대
+
+- Color.clear가 흰 판으로 보이던 것을 ultraThinMaterial + iOS 26 glassEffect로 교체.
+- Small 120/90/74, Medium 76, Large hero 110/92, 매일 36, 주간 42.
+
 ### 2026-08-14 — 페이즈 4 완료
 
 - Intent 도시, Small/Medium/Large, timelineDates. 테스트 32 초록.

@@ -70,7 +70,7 @@ struct jejuonlWidget: Widget {
         ) { entry in
             TodayWidgetView(entry: entry)
                 .containerBackground(for: .widget) {
-                    Color.clear
+                    WidgetGlassPlate()
                 }
         }
         .configurationDisplayName("오늘 뭐 버려?")

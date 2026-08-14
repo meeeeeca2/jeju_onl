@@ -6,6 +6,20 @@ enum WidgetPalette {
     static let hallabongGlow = hallabong.opacity(0.5)
 }
 
+/// Shared frosted plate for Small / Medium / Large. `Color.clear` becomes an opaque white system plate.
+struct WidgetGlassPlate: View {
+    var body: some View {
+        if #available(iOS 26.0, *) {
+            Rectangle()
+                .fill(.ultraThinMaterial)
+                .glassEffect(.regular, in: Rectangle())
+        } else {
+            Rectangle()
+                .fill(.ultraThinMaterial)
+        }
+    }
+}
+
 enum WidgetClockText {
     static func hm(_ date: Date) -> String {
         guard let calendar = try? SeoulCalendar.make() else { return "" }
