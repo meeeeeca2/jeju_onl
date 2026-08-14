@@ -1,9 +1,56 @@
 import SwiftUI
+import WidgetKit
 
 enum WidgetPalette {
     static let hallabong = Color(red: 1, green: 78 / 255, blue: 8 / 255)
     static let hallabongInk = Color(red: 224 / 255, green: 58 / 255, blue: 0)
     static let hallabongGlow = hallabong.opacity(0.5)
+    static let teal0 = Color(red: 26 / 255, green: 44 / 255, blue: 48 / 255)
+    static let teal1 = Color(red: 36 / 255, green: 56 / 255, blue: 61 / 255)
+    static let teal2 = Color(red: 21 / 255, green: 32 / 255, blue: 36 / 255)
+
+    static var homePlateGradient: LinearGradient {
+        LinearGradient(
+            colors: [
+                teal1.opacity(0.72),
+                teal0.opacity(0.65),
+                teal2.opacity(0.75)
+            ],
+            startPoint: UnitPoint(x: 0.15, y: 0),
+            endPoint: UnitPoint(x: 0.85, y: 1)
+        )
+    }
+}
+
+struct WidgetPlateFill: View {
+    @Environment(\.widgetRenderingMode) private var renderingMode
+
+    var body: some View {
+        if renderingMode == .accented {
+            EmptyView()
+        } else {
+            WidgetPalette.homePlateGradient
+        }
+    }
+}
+
+struct WidgetPlateChrome: ViewModifier {
+    @Environment(\.widgetRenderingMode) private var renderingMode
+
+    func body(content: Content) -> some View {
+        if renderingMode == .accented {
+            content
+                .containerBackground(for: .widget) {
+                    WidgetPlateFill()
+                }
+        } else {
+            content
+                .environment(\.colorScheme, .dark)
+                .containerBackground(for: .widget) {
+                    WidgetPlateFill()
+                }
+        }
+    }
 }
 
 enum WidgetClockText {
@@ -27,6 +74,7 @@ struct WidgetItemImage: View {
     var body: some View {
         Image(item.assetName)
             .resizable()
+            .widgetAccentedRenderingMode(.fullColor)
             .scaledToFill()
             .frame(width: side, height: side)
             .clipShape(RoundedRectangle(cornerRadius: corner, style: .continuous))

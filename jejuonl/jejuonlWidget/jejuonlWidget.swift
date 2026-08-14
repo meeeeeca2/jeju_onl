@@ -37,25 +37,28 @@ struct TodayWidgetView: View {
     var entry: TodayEntry
 
     var body: some View {
-        switch entry.load {
-        case .cityMissing:
-            WidgetMessageView(text: "도시를 선택해 주세요")
-        case .parseFailed:
-            WidgetMessageView(text: "앱을 다시 설치해 주세요")
-        case .schemaTooNew:
-            WidgetMessageView(text: "앱을 업데이트하세요")
-        case .ready(let snapshot, _):
-            switch family {
-            case .systemSmall:
-                SmallTodayView(snapshot: snapshot)
-            case .systemMedium:
-                MediumTodayView(snapshot: snapshot)
-            case .systemLarge:
-                LargeTodayView(snapshot: snapshot)
-            default:
-                SmallTodayView(snapshot: snapshot)
+        Group {
+            switch entry.load {
+            case .cityMissing:
+                WidgetMessageView(text: "도시를 선택해 주세요")
+            case .parseFailed:
+                WidgetMessageView(text: "앱을 다시 설치해 주세요")
+            case .schemaTooNew:
+                WidgetMessageView(text: "앱을 업데이트하세요")
+            case .ready(let snapshot, _):
+                switch family {
+                case .systemSmall:
+                    SmallTodayView(snapshot: snapshot)
+                case .systemMedium:
+                    MediumTodayView(snapshot: snapshot)
+                case .systemLarge:
+                    LargeTodayView(snapshot: snapshot)
+                default:
+                    SmallTodayView(snapshot: snapshot)
+                }
             }
         }
+        .modifier(WidgetPlateChrome())
     }
 }
 

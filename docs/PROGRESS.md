@@ -1,5 +1,11 @@
 # Progress
 
+## app-icon-and-widget-plate (2026-08-14)
+
+- 앱 아이콘: `docs/mockups/app-icon.jpg`를 아이콘 판(705²)으로 잘라 1024 PNG `jejuonl/jejuonl/Assets.xcassets/AppIcon.appiconset/AppIcon.png`. Contents.json 기본·dark·tinted 1024 슬롯 모두 같은 파일명. 빈 유리 판 아이콘 해소.
+- 위젯 판: `@Environment(\.widgetRenderingMode)`. `.accented`(홈 Clear/틴트)는 불투명 채움 없음 + `.containerBackgroundRemovable(true)`로 시스템 유리. `.fullColor`(기본 홈)는 Color.clear/ultraThinMaterial 대신 틸–슬레이트 프로스트 그라디언트 `#24383d → #1a2c30 → #152024` (불투명 0.65–0.75). 사진 `.widgetAccentedRenderingMode(.fullColor)` (`Image.resizable()` 직후). `contentMarginsDisabled` 유지. 아이콘 크기·뱃지 변경 없음.
+- 검증: `jejuonl` 스킴 ** TEST SUCCEEDED ** 32/32 / ** BUILD SUCCEEDED **. 위젯 스킴 미실행. 커밋 없음.
+
 ## widget-glass-and-name-badges (2026-08-14)
 
 - 유리 판: 커스텀 `containerBackground` + `WidgetGlassPlate`(ultraThinMaterial / glassEffect) 제거. iOS SDK에서 `widgetTexture(.glass)`는 visionOS-only(`@available(iOS, unavailable)`)라 생략. `.containerBackgroundRemovable(true)` + 커스텀 배경 없음 + `.contentMarginsDisabled()` 유지. 시스템이 iOS 26 기본 유리 텍스처를 씌움.

@@ -137,6 +137,11 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 
 ## 세션 로그
 
+### 2026-08-14 — 빈 앱 아이콘 + 위젯 흰 판
+
+- 빈 유리는 위젯이 아니라 AppIcon 슬롯에 이미지가 없어서. mockup app-icon.jpg를 넣음.
+- 기본 홈 위젯은 틸–슬레이트 판(흰 종이 대신). Clear/틴트 모드만 시스템 유리.
+
 ### 2026-08-14 — 위젯 흰 판 재수정 + 중간/큰 칸 이름 뱃지
 
 - 직접 칠한 Material이 흰 판이 됨. containerBackground 제거 + containerBackgroundRemovable. widgetTexture(.glass)는 iOS 불가(visionOS only).
