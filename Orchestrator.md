@@ -14,11 +14,11 @@
 | 제품 | 오늘 뭐 버려? / jejuonl — 제주 클린하우스 요일제 위젯 우선 앱 |
 | 설계 | `docs/design.md` Approved (2026-08-13), 식별자는 페이즈 1 실제 값으로 수정 |
 | GUI 시안 | 잠김 |
-| 코드 | 페이즈 5 알림 완료. 온보딩 풀스크린만 남음 |
+| 코드 | **v1 페이즈 1–6 완료** |
 | Git | `https://github.com/meeeeeca2/jeju_onl.git` (`origin/main`) |
-| 다음 한 가지 | **페이즈 6 — 온보딩·다듬기·INSTALL** (계획 승인 후) |
+| 다음 한 가지 | 제품 손맛 확인. 새 기능은 승인 후에만 |
 
-**아직 하지 말 것:** 승인 없이 구현 위임하지 않는다. 페이즈 5 태그 없이 페이즈 6 온보딩을 시작하지 않는다.
+**아직 하지 말 것:** 승인 없이 구현 위임하지 않는다. 기존 사용자 설정을 지우고 온보딩을 다시 강제하지 않는다.
 
 ---
 
@@ -46,8 +46,8 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 페이즈 2 완료 (태그 snapshot/phase-2-schedule-engine). 단위 테스트 25개 초록.
 페이즈 3 완료 (태그 snapshot/phase-3-app-today-week). 시뮬 첫 화면은 도시 두 카드.
 페이즈 4 완료 (태그 snapshot/phase-4-widget). 홈에 작은/넓은/큰 칸을 붙이면 됨. 위젯 스킴 Run 금지.
-페이즈 5 완료 (태그 snapshot/phase-5-notifications). 설정→알림에서 7일 로컬 예약.
-다음 한 가지: 페이즈 6 온보딩·INSTALL. 구현 전에 계획만 보여 주고 승인 기다려.
+v1 페이즈 1–6 완료. 마지막 태그 snapshot/phase-6-onboarding-install.
+다음: 손맛 확인. 구현은 승인 후에만.
 ```
 
 ---
@@ -112,7 +112,7 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 | 3 | 오늘 / 이번 주 / 도시 세그먼트 | `snapshot/phase-3-app-today-week` | **완료** |
 | 4 | Small·Medium·Large 위젯 | `snapshot/phase-4-widget` | **완료** |
 | 5 | 로컬 알림 + 알림 설정 | `snapshot/phase-5-notifications` | **완료** |
-| 6 | 온보딩·다듬기·INSTALL | `snapshot/phase-6-onboarding-install` | 대기 |
+| 6 | 온보딩·다듬기·INSTALL | `snapshot/phase-6-onboarding-install` | **완료** |
 
 페이즈 1 주의:
 
@@ -137,6 +137,12 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 ---
 
 ## 세션 로그
+
+### 2026-08-14 — 페이즈 6 완료 (v1 마침)
+
+- 신규 설치만 온보딩 3장. 저장된 settings.v1은 유지.
+- INSTALL.md 비개발자 가이드. 테스트 44 초록.
+- 태그 snapshot/phase-6-onboarding-install.
 
 ### 2026-08-14 — 페이즈 5 완료
 

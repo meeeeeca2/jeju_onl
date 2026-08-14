@@ -7,9 +7,17 @@ struct AppSettings: Codable, Equatable, Sendable {
     var notifications: NotificationPrefs
 
     /// 페이즈 3–5 및 “이미 설치된 설정 없음”이 아닌 로드 실패 시.
+    /// 신규 설치 기본값이 아니다. `hasCompletedOnboarding`을 false로 바꾸지 않는다.
     static let `default` = AppSettings(
         city: nil,
         hasCompletedOnboarding: true,
+        notifications: .default
+    )
+
+    /// `settings.v1` 키가 표준·앱그룹 어디에도 없을 때만. 온보딩을 띄운다.
+    static let freshInstall = AppSettings(
+        city: nil,
+        hasCompletedOnboarding: false,
         notifications: .default
     )
 

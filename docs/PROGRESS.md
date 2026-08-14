@@ -1,5 +1,32 @@
 # Progress
 
+## phase-6-onboarding-install (2026-08-14)
+
+- 한 일:
+  - 신규 설치만 온보딩. `settings.v1` 키가 표준·앱그룹 **둘 다 없으면** `AppSettings.freshInstall` (`hasCompletedOnboarding == false`). 키는 있는데 디코드 실패면 `.default`(온보딩 true). 디코드 성공은 그대로. `.default.hasCompletedOnboarding`은 true 유지.
+  - `AppGroupSettingsStore.load()`가 키 없음 / 깨짐 / 정상 저장을 구분. 테스트는 격리 `UserDefaults` 스위트만 사용.
+  - `OnboardingView` 풀스크린(탭 바 없음). 1/3 도시(서귀포 “집” 강조, 탭 전 미저장, 다음=탭 후), 2/3 알림(`알림 받기`=`setNotificationsEnabled(true)`, `나중에`는 권한 창 없음), 3/3 위젯 4단계 + 앱이 대신 못 붙임. `[시작하기]` → `hasCompletedOnboarding = true` → 오늘 탭.
+  - 설정에 재온보딩 없음. 앱·온보딩 `preferredColorScheme(.dark)`. 아이콘 에셋은 기존 라이트 사진, AppIcon dark/tinted 슬롯 유지.
+  - 온보딩 제목·버튼 Dynamic Type, 카드·CTA VoiceOver.
+  - `docs/INSTALL.md`를 비개발자용 완성본으로 다시 씀(스킴 jejuonl, 같은 Team, 신뢰, 위젯 길게 도시, 주 1회 앱, 7일 재설치, 시뮬레이터 no devices, 확인 메모).
+- 검증:
+  ```
+  export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+  xcodebuild test -project jejuonl/jejuonl.xcodeproj -scheme jejuonl \
+    -destination 'platform=iOS Simulator,name=iPhone 17 Pro' \
+    -only-testing:jejuonlTests
+  xcodebuild build -project jejuonl/jejuonl.xcodeproj -scheme jejuonl \
+    -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+  ```
+  - 결과: `** TEST SUCCEEDED **` / `** BUILD SUCCEEDED **`
+  - xcresult: `totalTestCount: 44`, `passedTests: 44`, `failedTests: 0`, `skippedTests: 0`
+  - 구성: ScheduleEngineTests 11 / ScheduleCatalogTests 8 / WidgetTimelineDatesTests 3 / ClockTimeTests 3 / CountdownFormatTests 7 / NotificationPlannerTests 8 / AppGroupSettingsStoreTests 4
+  - 위젯 스킴(jejuonlWidgetExtension)은 실행하지 않음.
+- 남긴 것:
+  - 수동 실기기 체크리스트 15(권한 거부)·16(재부팅)·17(TZ)·18(위젯 시·Large). 커밋은 오케스트레이터.
+- 태그: snapshot/phase-6-onboarding-install (커밋은 오케스트레이터)
+- 다음: v1 페이즈 끝. 실기기 설치·위젯 붙이기.
+
 ## phase-5-notifications (2026-08-14)
 
 - 한 일:

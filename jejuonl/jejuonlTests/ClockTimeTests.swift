@@ -20,6 +20,8 @@ final class ClockTimeTests: XCTestCase {
     func testAppSettingsDefaultAndPreview() {
         XCTAssertNil(AppSettings.default.city)
         XCTAssertTrue(AppSettings.default.hasCompletedOnboarding)
+        XCTAssertNil(AppSettings.freshInstall.city)
+        XCTAssertFalse(AppSettings.freshInstall.hasCompletedOnboarding)
         XCTAssertEqual(AppSettings.preview.city, .seogwipo)
 
         let prefs = NotificationPrefs.default

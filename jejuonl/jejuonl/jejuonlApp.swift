@@ -9,11 +9,18 @@ struct jejuonlApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView()
-                .environment(model)
-                .onReceive(NotificationCenter.default.publisher(for: .NSSystemTimeZoneDidChange)) { _ in
-                    model.rescheduleNotifications()
+            Group {
+                if model.settings.hasCompletedOnboarding {
+                    RootView()
+                } else {
+                    OnboardingView()
                 }
+            }
+            .environment(model)
+            .preferredColorScheme(.dark)
+            .onReceive(NotificationCenter.default.publisher(for: .NSSystemTimeZoneDidChange)) { _ in
+                model.rescheduleNotifications()
+            }
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
@@ -68,6 +75,15 @@ final class AppModel {
         persistIfNeeded()
         WidgetCenter.shared.reloadAllTimelines()
         rescheduleNotifications()
+    }
+
+    func declineOnboardingNotifications() {
+        applyNotificationPrefs { $0.isEnabled = false }
+    }
+
+    func completeOnboarding() {
+        settings.hasCompletedOnboarding = true
+        persistIfNeeded()
     }
 
     func handleSceneActive() {
