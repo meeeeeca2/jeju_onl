@@ -26,6 +26,7 @@
   - 시뮬레이터 첫 실행은 `AppSettings.default`(city nil) → 도시 카드. Preview는 `AppSettings.preview`(서귀포).
 - 태그: snapshot/phase-3-app-today-week
 - 오케스트레이터 재검증: 테스트 32 passed. 시뮬 첫 화면 도시 피커 스크린샷 확인.
+- 사용자 확인: Autocreate로 `jejuonl` 스킴 복구 후 Run, 화면 동작 OK. 공유 스킴을 레포에 고정.
 - 다음: 페이즈 4 — Small·Medium·Large 위젯
 
 ## phase-2-schedule-engine (2026-08-14)

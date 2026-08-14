@@ -6,7 +6,7 @@
 2. 아이폰: 설정 → 개인정보 보호 및 보안 → 개발자 모드 켬 → 재시작.
 3. 케이블로 Mac과 연결. 아이폰에서 “이 컴퓨터를 신뢰”.
 4. Xcode → `jejuonl/jejuonl.xcodeproj` 를 엽니다.
-5. 왼쪽 위 스킴을 **jejuonl** (위젯 아님), 기기 목록에서 **내 아이폰**.
+5. 왼쪽 위(또는 가운데) 스킴을 **jejuonl** 로. `jejuonlWidgetExtension`이면 앱이 아니라 위젯을 실행합니다. 목록에 `jejuonl`이 없으면 Product → Scheme → Manage Schemes → Autocreate Schemes Now.
 6. Signing: TARGETS `jejuonl`과 `jejuonlWidget` 모두 같은 Team.
 7. ▶ Run. 아이폰에 뜨면 끝.
 8. “신뢰할 수 없는 개발자”면 설정 → 일반 → VPN 및 기기 관리 → 개발자 앱 → 신뢰.
