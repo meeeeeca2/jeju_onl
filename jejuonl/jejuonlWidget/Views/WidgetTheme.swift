@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 import WidgetKit
 
 enum WidgetPalette {
@@ -72,14 +73,39 @@ struct WidgetItemImage: View {
     var corner: CGFloat
 
     var body: some View {
-        Image(item.assetName)
-            .resizable()
-            .widgetAccentedRenderingMode(.fullColor)
-            .scaledToFill()
-            .frame(width: side, height: side)
-            .clipShape(RoundedRectangle(cornerRadius: corner, style: .continuous))
-            .shadow(color: .black.opacity(0.22), radius: side > 48 ? 6 : 3, y: side > 48 ? 4 : 2)
-            .accessibilityHidden(true)
+        Group {
+            if let photo = Self.downsampledImage(named: item.assetName, side: side) {
+                Image(uiImage: photo)
+                    .resizable()
+                    .widgetAccentedRenderingMode(.fullColor)
+                    .scaledToFill()
+            } else {
+                Image(systemName: item.symbolName)
+                    .font(.system(size: max(11, side * 0.42), weight: .semibold))
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(WidgetPalette.teal0)
+            }
+        }
+        .frame(width: side, height: side)
+        .clipShape(RoundedRectangle(cornerRadius: corner, style: .continuous))
+        .shadow(color: .black.opacity(0.22), radius: side > 48 ? 6 : 3, y: side > 48 ? 4 : 2)
+        .accessibilityHidden(true)
+    }
+
+    private static func downsampledImage(named name: String, side: CGFloat) -> UIImage? {
+        guard let source = UIImage(named: name) else { return nil }
+        let pixelSide = min(256, max(1, (side * 3).rounded(.up)))
+        let target = CGSize(width: pixelSide, height: pixelSide)
+        if let thumb = source.preparingThumbnail(of: target) {
+            return thumb
+        }
+        let format = UIGraphicsImageRendererFormat.default()
+        format.scale = 1
+        format.opaque = false
+        return UIGraphicsImageRenderer(size: target, format: format).image { _ in
+            source.draw(in: CGRect(origin: .zero, size: target))
+        }
     }
 }
 

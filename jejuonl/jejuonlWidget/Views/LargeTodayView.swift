@@ -17,30 +17,33 @@ struct LargeTodayView: View {
             }
 
             hero
-                .padding(.top, 10)
+                .padding(.top, 8)
 
             if let extra {
                 weekRow(extra.days)
-                    .padding(.top, 14)
+                    .padding(.top, 8)
                 Text(extra.tomorrowLine)
                     .font(.system(size: 11, weight: .semibold))
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
-                    .padding(.top, 8)
+                    .padding(.top, 6)
             }
-
-            Spacer(minLength: 0)
         }
-        .padding(14)
+        .padding(12)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(largeAccessibility(extra: extra))
     }
 
     private var hero: some View {
-        HStack(alignment: .center, spacing: 12) {
+        HStack(alignment: .center, spacing: 10) {
             heroIcons
             VStack(alignment: .leading, spacing: 2) {
+                Text(heroNames)
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundStyle(.white)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.7)
                 Text(heroTime)
                     .font(.system(size: 22, weight: .bold))
                     .foregroundStyle(.primary)
@@ -52,7 +55,7 @@ struct LargeTodayView: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
                 alwaysOnIcons
-                    .padding(.top, 6)
+                    .padding(.top, 4)
             }
             Spacer(minLength: 0)
         }
@@ -65,11 +68,11 @@ struct LargeTodayView: View {
         case 0:
             EmptyView()
         case 1:
-            WidgetItemWithNameBadge(item: items[0], side: 110, corner: 30)
+            WidgetItemImage(item: items[0], side: 72, corner: 20)
         default:
-            HStack(spacing: -28) {
+            HStack(spacing: -14) {
                 ForEach(Array(items.prefix(3).enumerated()), id: \.element) { index, item in
-                    WidgetItemWithNameBadge(item: item, side: 92, corner: 26)
+                    WidgetItemImage(item: item, side: 56, corner: 16)
                         .zIndex(Double(index))
                 }
             }
@@ -77,11 +80,16 @@ struct LargeTodayView: View {
     }
 
     private var alwaysOnIcons: some View {
-        HStack(spacing: 5) {
+        HStack(spacing: 4) {
             ForEach(snapshot.alwaysOnItems, id: \.self) { item in
-                WidgetItemImage(item: item, side: 36, corner: 11)
+                WidgetItemImage(item: item, side: 24, corner: 7)
             }
         }
+    }
+
+    private var heroNames: String {
+        let names = snapshot.restrictedItems.map(\.koreanName)
+        return names.isEmpty ? "오늘은 제한 품목 없음" : names.joined(separator: " · ")
     }
 
     private var heroTime: String {
@@ -103,28 +111,28 @@ struct LargeTodayView: View {
     }
 
     private func weekRow(_ days: [DischargeSnapshot]) -> some View {
-        HStack(spacing: 4) {
+        HStack(spacing: 3) {
             ForEach(days, id: \.dischargeDayStart) { day in
                 let isToday = day.dischargeDayStart == snapshot.dischargeDayStart
-                VStack(spacing: 4) {
+                VStack(spacing: 3) {
                     Text(day.dischargeWeekday.shortKoreanName)
                         .font(.system(size: 10, weight: .bold))
                         .foregroundStyle(isToday ? WidgetPalette.hallabongInk : Color.secondary)
                     if let first = day.restrictedItems.first {
-                        WidgetItemImage(item: first, side: 42, corner: 12)
+                        WidgetItemImage(item: first, side: 28, corner: 8)
                     }
                 }
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 4)
+                .padding(.vertical, 3)
                 .background {
                     if isToday {
-                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                        RoundedRectangle(cornerRadius: 8, style: .continuous)
                             .fill(WidgetPalette.hallabong.opacity(0.16))
                     }
                 }
             }
         }
-        .padding(.top, 10)
+        .padding(.top, 8)
         .overlay(alignment: .top) {
             Rectangle()
                 .fill(Color.primary.opacity(0.12))

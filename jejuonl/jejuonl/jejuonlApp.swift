@@ -87,6 +87,7 @@ final class AppModel {
     }
 
     func handleSceneActive() {
+        WidgetCenter.shared.reloadAllTimelines()
         rescheduleNotifications()
         Task { await refreshNotificationStatus() }
     }

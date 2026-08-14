@@ -1,5 +1,14 @@
 # Progress
 
+## widget-small-large-snapshot-fit (2026-08-14)
+
+- Small/Large 홈 위젯이 스냅샷 실패로 빈 다크 카드. 기기에서 중간만 보이다가 지우고 다시 넣으면 중간도 자리표시에 고정됨.
+- Small: 120/90/74 팬 제거. 상태+요일 + 18pt 흰 품목명(0개면 `오늘은 제한 품목 없음`) + 최대 3장 56pt. 패딩 8. 141pt 안에 맞춤.
+- Large: 히어로 72/56, 매일 24, 주간 28. 패딩 14→12, 하단 Spacer 제거. 같은 정보 유지.
+- `WidgetItemImage`: `UIImage(named:)` 다운샘플 `side*3`(최대 256px). 없으면 `WasteItem.symbolName` SF Symbol. 사진은 `.widgetAccentedRenderingMode(.fullColor)`. Medium 68pt 뱃지도 이 헬퍼를 탐.
+- 앱이 포그라운드가 되면 `WidgetCenter.reloadAllTimelines()` (도시 바꿀 때만 리로드하던 것 보강).
+- 검증: 스킴 `jejuonl` only. `** TEST SUCCEEDED **` / `** BUILD SUCCEEDED **` (44 tests). `jejuonlWidgetExtension` 미실행.
+
 ## onboarding-city-cards (2026-08-14)
 
 - 실기기: 도시 카드가 화면을 세로로 채움, 서귀포 테두리만 있고 다음은 꺼짐, 터치가 글자에만 반응.
