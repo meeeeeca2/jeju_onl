@@ -1,5 +1,12 @@
 # Progress
 
+## item-detail-sheet (2026-08-14)
+
+- 오늘 `오늘만`/`매일` 타일, `beforeOpen` 상태 카드 음식물 타일, 주간 `WeekDaySheet` 타일 탭 → 다크 바텀시트(큰 사진·이름·메타·짧은 배출 안내). 타일 크기·캡션·간격·그림자는 그대로.
+- 주간 목록 행 아이콘·알림 설정 행·위젯은 탭해도 품목 시트를 열지 않음.
+- 카피 `WasteItemGuide`는 앱 타깃. 창 시간은 섬 공통 15:00–04:00. 서귀포 PET만 공식 요일표 주석.
+- 검증: 스킴 `jejuonl` only. `** TEST SUCCEEDED **` / `** BUILD SUCCEEDED **`. xcresult `totalTestCount: 48` (`WasteItemGuideTests` 4). `jejuonlWidgetExtension` 미실행.
+
 ## widget-small-icon-badge-fit (2026-08-14)
 
 - 작은 칸이 다시 그려진 뒤, 고정 56pt+큰 글자 대신 **남은 칸을 채우는 아이콘 + 사진 안 이름 뱃지**. 고정 120pt는 쓰지 않음(스냅샷 실패 재발 방지). 뱃지 `offset` 제거해 칸 밖으로 안 나감.

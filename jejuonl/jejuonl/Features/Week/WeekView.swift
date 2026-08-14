@@ -134,6 +134,7 @@ private struct DaySheet: Identifiable {
 
 private struct WeekDaySheet: View {
     let snapshot: DischargeSnapshot
+    @State private var selectedItem: ItemDetailSelection?
 
     var body: some View {
         ZStack {
@@ -146,7 +147,9 @@ private struct WeekDaySheet: View {
                     .padding(.top, 8)
                 HStack(spacing: 14) {
                     ForEach(snapshot.restrictedItems, id: \.self) { item in
-                        ItemTile(item: item, kind: .regular)
+                        ItemTile(item: item, kind: .regular, onSelect: {
+                            selectedItem = ItemDetailSelection(item: item)
+                        })
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -156,6 +159,9 @@ private struct WeekDaySheet: View {
                 Spacer()
             }
             .padding(20)
+        }
+        .sheet(item: $selectedItem) { selection in
+            ItemDetailSheet(item: selection.item, city: snapshot.city)
         }
     }
 }

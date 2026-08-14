@@ -2,6 +2,7 @@ import SwiftUI
 
 struct TodayView: View {
     @Environment(AppModel.self) private var model
+    @State private var selectedItem: ItemDetailSelection?
 
     var body: some View {
         TimelineView(.periodic(from: .now, by: 15)) { context in
@@ -25,6 +26,11 @@ struct TodayView: View {
             }
             .scrollIndicators(.hidden)
             .background(AppBackground())
+        }
+        .sheet(item: $selectedItem) { selection in
+            if let city = model.settings.city {
+                ItemDetailSheet(item: selection.item, city: city)
+            }
         }
     }
 
@@ -78,16 +84,16 @@ struct TodayView: View {
                         .foregroundStyle(Palette.inkDim)
                 }
             }
+            .accessibilityElement(children: .combine)
             Spacer(minLength: 8)
             if snapshot.window == .beforeOpen {
-                ItemTile(item: .food, kind: .daily, showsCaption: false)
+                ItemTile(item: .food, kind: .daily, showsCaption: false, onSelect: { showItem(.food) })
             }
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 12)
         .frame(maxWidth: .infinity, alignment: .leading)
         .appGlass(in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-        .accessibilityElement(children: .combine)
     }
 
     private var liveBadge: some View {
@@ -119,7 +125,7 @@ struct TodayView: View {
         let kind: ItemTile.SizeKind = items.count == 1 ? .large : .regular
         return HStack(alignment: .top, spacing: 14) {
             ForEach(items, id: \.self) { item in
-                ItemTile(item: item, kind: kind)
+                ItemTile(item: item, kind: kind, onSelect: { showItem(item) })
             }
             if items.isEmpty {
                 Spacer(minLength: 0)
@@ -131,10 +137,14 @@ struct TodayView: View {
     private func dailyRow(_ items: [WasteItem]) -> some View {
         HStack(alignment: .bottom, spacing: 10) {
             ForEach(items, id: \.self) { item in
-                ItemTile(item: item, kind: .daily, useShortName: true)
+                ItemTile(item: item, kind: .daily, useShortName: true, onSelect: { showItem(item) })
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func showItem(_ item: WasteItem) {
+        selectedItem = ItemDetailSelection(item: item)
     }
 
     private func notes(for city: CityID) -> some View {

@@ -39,12 +39,29 @@ struct ItemTile: View {
     var kind: SizeKind = .regular
     var showsCaption: Bool = true
     var useShortName: Bool = false
+    var onSelect: (() -> Void)? = nil
 
     private var caption: String {
         useShortName ? item.shortKoreanName : item.koreanName
     }
 
     var body: some View {
+        if let onSelect {
+            Button(action: onSelect) {
+                tileStack
+            }
+            .buttonStyle(.plain)
+            .fillsHitTarget()
+            .accessibilityLabel(item.koreanName)
+            .accessibilityHint("자세히 보기")
+        } else {
+            tileStack
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(item.koreanName)
+        }
+    }
+
+    private var tileStack: some View {
         VStack(spacing: kind == .daily ? 4 : 7) {
             Image(item.assetName)
                 .resizable()
@@ -61,7 +78,5 @@ struct ItemTile: View {
             }
         }
         .frame(width: kind.side)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(item.koreanName)
     }
 }
