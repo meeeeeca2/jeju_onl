@@ -1,5 +1,33 @@
 # Progress
 
+## phase-3-app-today-week (2026-08-14)
+
+- 한 일:
+  - 앱 탭 루트: 오늘 / 이번 주 / 설정. Hello world `ContentView` 삭제.
+  - `TodayView`: 도시 세그먼트만(헤더 톱니 없음). `city == nil`이면 ONB-1 스타일 두 카드(서귀포 강조, 탭해야 저장). 날짜는 `snapshot.dischargeDayStart` + `dischargeWeekday`. 창 `지금`/`저녁부터` + 카운트다운. 오늘만/매일 `ItemTile`. PET는 엔진 결과대로 제주시만.
+  - `WeekView`: `engine.week` 월–일 7행, 오늘 배출일 강조, 행 탭 시트. `Calendar.firstWeekday` 미사용.
+  - `SettingsView`: 도시(같은 피커), 알림 행은 `14:30` 표시만(SET-2/UNUserNotificationCenter 없음), 위젯 힌트, 카탈로그 버전.
+  - Core: `WasteItem.assetName`, `AppGroupSettingsStore` (`group.kr.jejuonl.shared` / `settings.v1`, 컨테이너 URL로만 그룹 판정), `CountdownFormat`.
+  - 시안 JPG 10종을 앱 에셋으로 복사. 앱 크롬에 `wallpaper.jpg` 없음. 배경은 틸–슬레이트 그라디언트.
+- 검증:
+  ```
+  export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+  xcodebuild test -project jejuonl/jejuonl.xcodeproj -scheme jejuonl \
+    -destination 'platform=iOS Simulator,name=iPhone 17 Pro' \
+    -only-testing:jejuonlTests
+  xcodebuild build -project jejuonl/jejuonl.xcodeproj -scheme jejuonl \
+    -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+  ```
+  - 결과: `** TEST SUCCEEDED **` / `** BUILD SUCCEEDED **`
+  - xcresult: `totalTestCount: 32`, `passedTests: 32`, `failedTests: 0`, `skippedTests: 0`
+  - 구성: ScheduleEngineTests 11 / ScheduleCatalogTests 8 / WidgetTimelineDatesTests 3 / ClockTimeTests 3 / CountdownFormatTests 7
+- 남긴 것:
+  - 온보딩 풀스크린(페이즈 6), 위젯 얼굴(페이즈 4, Hello 위젯 유지), NotificationScheduler/SET-2(페이즈 5), Live Activity 파일 유지.
+  - 시뮬레이터 첫 실행은 `AppSettings.default`(city nil) → 도시 카드. Preview는 `AppSettings.preview`(서귀포).
+- 태그: snapshot/phase-3-app-today-week
+- 오케스트레이터 재검증: 테스트 32 passed. 시뮬 첫 화면 도시 피커 스크린샷 확인.
+- 다음: 페이즈 4 — Small·Medium·Large 위젯
+
 ## phase-2-schedule-engine (2026-08-14)
 
 - 한 일:

@@ -14,11 +14,11 @@
 | 제품 | 오늘 뭐 버려? / jejuonl — 제주 클린하우스 요일제 위젯 우선 앱 |
 | 설계 | `docs/design.md` Approved (2026-08-13), 식별자는 페이즈 1 실제 값으로 수정 |
 | GUI 시안 | 잠김 |
-| 코드 | 페이즈 2 엔진 완료. 화면은 아직 템플릿 Hello |
+| 코드 | 페이즈 3 앱 화면 완료. 위젯 얼굴·알림·온보딩 풀스크린은 없음 |
 | Git | `https://github.com/meeeeeca2/jeju_onl.git` (`origin/main`) |
-| 다음 한 가지 | **페이즈 3 — 오늘 / 이번 주 / 도시 세그먼트** (계획 승인 후) |
+| 다음 한 가지 | **페이즈 4 — Small/Medium/Large 위젯** (계획 승인 후) |
 
-**아직 하지 말 것:** 승인 없이 구현 위임하지 않는다. 페이즈 2 태그 없이 페이즈 3 UI를 시작하지 않는다.
+**아직 하지 말 것:** 승인 없이 구현 위임하지 않는다. 페이즈 3 태그 없이 페이즈 4 위젯을 시작하지 않는다.
 
 ---
 
@@ -44,7 +44,8 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 페이즈 1 뼈대 완료 (태그 snapshot/phase-1-skeleton). Xcode는 jejuonl/jejuonl.xcodeproj.
 식별자: kr.jejuonl.jejuonl / kr.jejuonl.jejuonl.jejuonlWidget / group.kr.jejuonl.shared.
 페이즈 2 완료 (태그 snapshot/phase-2-schedule-engine). 단위 테스트 25개 초록.
-다음 한 가지: 페이즈 3 오늘/주간 UI. 구현 전에 계획만 보여 주고 승인 기다려.
+페이즈 3 완료 (태그 snapshot/phase-3-app-today-week). 시뮬 첫 화면은 도시 두 카드.
+다음 한 가지: 페이즈 4 위젯 얼굴. 구현 전에 계획만 보여 주고 승인 기다려.
 ```
 
 ---
@@ -89,7 +90,7 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 | `docs/PROGRESS.md` | 페이즈 로그 |
 | `docs/INSTALL.md` | 비개발자 설치 초안 |
 | `jejuonl/jejuonl.xcodeproj` | 앱+위젯 템플릿 |
-| `jejuonl/jejuonl/` | 앱 소스 (지금 ContentView 빈 화면) |
+| `jejuonl/jejuonl/` | 앱: Root/Today/Week/Settings, 시안 아이콘 에셋 |
 | `jejuonl/jejuonlWidget/` | 위젯 템플릿 + ConfigurationAppIntent |
 | `Shared/jejuonlCore/` | ScheduleEngine + schedule_v1.json (앱·위젯·테스트 공유) |
 
@@ -106,7 +107,7 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 | 0 | 설계 + GUI 시안 | — | **완료** |
 | 1 | Xcode 뼈대, gitignore, App Groups 시도 | `snapshot/phase-1-skeleton` | **완료** |
 | 2 | schedule JSON + ScheduleEngine + 단위 테스트 | `snapshot/phase-2-schedule-engine` | **완료** |
-| 3 | 오늘 / 이번 주 / 도시 세그먼트 | `snapshot/phase-3-app-today-week` | 대기 |
+| 3 | 오늘 / 이번 주 / 도시 세그먼트 | `snapshot/phase-3-app-today-week` | **완료** |
 | 4 | Small·Medium·Large 위젯 | `snapshot/phase-4-widget` | 대기 |
 | 5 | 로컬 알림 + 알림 설정 | `snapshot/phase-5-notifications` | 대기 |
 | 6 | 온보딩·다듬기·INSTALL | `snapshot/phase-6-onboarding-install` | 대기 |
@@ -134,6 +135,18 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 ---
 
 ## 세션 로그
+
+### 2026-08-14 — 페이즈 3 완료
+
+- 탭 오늘/이번 주/설정. 헤더 톱니 없음. 첫 실행 도시 카드(서귀포 강조).
+- 테스트 32 초록. 시뮬 스크린샷으로 도시 피커 확인.
+- 위젯 얼굴·알림·온보딩 풀스크린 없음.
+- 다음: 페이즈 4 계획.
+
+### 2026-08-14 — 페이즈 3 계획 제시, 승인 대기
+
+- 범위: 탭 루트, Today/Week/Settings(도시), ItemTile, AppGroupSettingsStore, 시안 아이콘 에셋.
+- 안 함: 온보딩 풀스크린, 위젯 얼굴, 알림 스케줄/SET-2, 헤더 톱니.
 
 ### 2026-08-14 — 페이즈 2 완료
 

@@ -19,6 +19,8 @@
 		A2F2A00A302E00010000000A /* WidgetTimelineDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C00A302E00010000000A /* WidgetTimelineDates.swift */; };
 		A2F2A00B302E00010000000B /* ScheduleEngineError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C00B302E00010000000B /* ScheduleEngineError.swift */; };
 		A2F2A00C302E00010000000C /* schedule_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = A2F2C00C302E00010000000C /* schedule_v1.json */; };
+		A2F2A00D302E00010000000D /* AppGroupSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C00D302E00010000000D /* AppGroupSettingsStore.swift */; };
+		A2F2A00E302E00010000000E /* CountdownFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C00E302E00010000000E /* CountdownFormat.swift */; };
 		A2F2B001302E000100000001 /* CityID.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C001302E000100000001 /* CityID.swift */; };
 		A2F2B002302E000100000002 /* WasteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C002302E000100000002 /* WasteItem.swift */; };
 		A2F2B003302E000100000003 /* WindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C003302E000100000003 /* WindowState.swift */; };
@@ -31,6 +33,8 @@
 		A2F2B00A302E00010000000A /* WidgetTimelineDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C00A302E00010000000A /* WidgetTimelineDates.swift */; };
 		A2F2B00B302E00010000000B /* ScheduleEngineError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C00B302E00010000000B /* ScheduleEngineError.swift */; };
 		A2F2B00C302E00010000000C /* schedule_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = A2F2C00C302E00010000000C /* schedule_v1.json */; };
+		A2F2B00D302E00010000000D /* AppGroupSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C00D302E00010000000D /* AppGroupSettingsStore.swift */; };
+		A2F2B00E302E00010000000E /* CountdownFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C00E302E00010000000E /* CountdownFormat.swift */; };
 		A2F2D001302E000100000001 /* CityID.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C001302E000100000001 /* CityID.swift */; };
 		A2F2D002302E000100000002 /* WasteItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C002302E000100000002 /* WasteItem.swift */; };
 		A2F2D003302E000100000003 /* WindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C003302E000100000003 /* WindowState.swift */; };
@@ -43,6 +47,8 @@
 		A2F2D00A302E00010000000A /* WidgetTimelineDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C00A302E00010000000A /* WidgetTimelineDates.swift */; };
 		A2F2D00B302E00010000000B /* ScheduleEngineError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C00B302E00010000000B /* ScheduleEngineError.swift */; };
 		A2F2D00C302E00010000000C /* schedule_v1.json in Resources */ = {isa = PBXBuildFile; fileRef = A2F2C00C302E00010000000C /* schedule_v1.json */; };
+		A2F2D00D302E00010000000D /* AppGroupSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C00D302E00010000000D /* AppGroupSettingsStore.swift */; };
+		A2F2D00E302E00010000000E /* CountdownFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F2C00E302E00010000000E /* CountdownFormat.swift */; };
 		EDF4B856302E9788005A0C9D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF4B855302E9788005A0C9D /* WidgetKit.framework */; };
 		EDF4B858302E9788005A0C9D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDF4B857302E9788005A0C9D /* SwiftUI.framework */; };
 		EDF4B869302E9789005A0C9D /* jejuonlWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EDF4B853302E9787005A0C9D /* jejuonlWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -99,6 +105,8 @@
 		A2F2C00A302E00010000000A /* WidgetTimelineDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTimelineDates.swift; sourceTree = "<group>"; };
 		A2F2C00B302E00010000000B /* ScheduleEngineError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleEngineError.swift; sourceTree = "<group>"; };
 		A2F2C00C302E00010000000C /* schedule_v1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = schedule_v1.json; sourceTree = "<group>"; };
+		A2F2C00D302E00010000000D /* AppGroupSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroupSettingsStore.swift; sourceTree = "<group>"; };
+		A2F2C00E302E00010000000E /* CountdownFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownFormat.swift; sourceTree = "<group>"; };
 		EDF4B825302E961A005A0C9D /* jejuonl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jejuonl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF4B832302E961C005A0C9D /* jejuonlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jejuonlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDF4B83C302E961C005A0C9D /* jejuonlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jejuonlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +191,7 @@
 			children = (
 				A2F2C011302E000100000011 /* Models */,
 				A2F2C012302E000100000012 /* Schedule */,
+				A2F2C014302E000100000014 /* Settings */,
 				A2F2C013302E000100000013 /* Resources */,
 			);
 			name = jejuonlCore;
@@ -210,8 +219,17 @@
 				A2F2C009302E000100000009 /* ScheduleEngine.swift */,
 				A2F2C00A302E00010000000A /* WidgetTimelineDates.swift */,
 				A2F2C00B302E00010000000B /* ScheduleEngineError.swift */,
+				A2F2C00E302E00010000000E /* CountdownFormat.swift */,
 			);
 			path = Schedule;
+			sourceTree = "<group>";
+		};
+		A2F2C014302E000100000014 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A2F2C00D302E00010000000D /* AppGroupSettingsStore.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		A2F2C013302E000100000013 /* Resources */ = {
@@ -449,6 +467,8 @@
 				A2F2A009302E000100000009 /* ScheduleEngine.swift in Sources */,
 				A2F2A00A302E00010000000A /* WidgetTimelineDates.swift in Sources */,
 				A2F2A00B302E00010000000B /* ScheduleEngineError.swift in Sources */,
+				A2F2A00D302E00010000000D /* AppGroupSettingsStore.swift in Sources */,
+				A2F2A00E302E00010000000E /* CountdownFormat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +487,8 @@
 				A2F2D009302E000100000009 /* ScheduleEngine.swift in Sources */,
 				A2F2D00A302E00010000000A /* WidgetTimelineDates.swift in Sources */,
 				A2F2D00B302E00010000000B /* ScheduleEngineError.swift in Sources */,
+				A2F2D00D302E00010000000D /* AppGroupSettingsStore.swift in Sources */,
+				A2F2D00E302E00010000000E /* CountdownFormat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +514,8 @@
 				A2F2B009302E000100000009 /* ScheduleEngine.swift in Sources */,
 				A2F2B00A302E00010000000A /* WidgetTimelineDates.swift in Sources */,
 				A2F2B00B302E00010000000B /* ScheduleEngineError.swift in Sources */,
+				A2F2B00D302E00010000000D /* AppGroupSettingsStore.swift in Sources */,
+				A2F2B00E302E00010000000E /* CountdownFormat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

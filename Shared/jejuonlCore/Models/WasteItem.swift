@@ -50,4 +50,19 @@ enum WasteItem: String, Codable, CaseIterable, Sendable {
         case .styrofoam: return "square.dashed"
         }
     }
+
+    var assetName: String {
+        switch self {
+        case .plastic: return "plastic"
+        case .clearPET: return "pet"
+        case .paper: return "paper"
+        case .vinyl: return "vinyl"
+        case .incombustible: return "incombustible"
+        case .general: return "general"
+        case .food: return "food"
+        case .canMetal: return "can"
+        case .glass: return "glass"
+        case .styrofoam: return "styrofoam"
+        }
+    }
 }
