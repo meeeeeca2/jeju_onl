@@ -69,14 +69,12 @@ struct jejuonlWidget: Widget {
             provider: TodayProvider()
         ) { entry in
             TodayWidgetView(entry: entry)
-                .containerBackground(for: .widget) {
-                    WidgetGlassPlate()
-                }
         }
         .configurationDisplayName("오늘 뭐 버려?")
         .description("오늘 클린하우스에 넣을 수 있는 쓰레기를 보여 줍니다")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
         .contentMarginsDisabled()
+        .containerBackgroundRemovable(true)
     }
 }
 

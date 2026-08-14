@@ -65,11 +65,11 @@ struct LargeTodayView: View {
         case 0:
             EmptyView()
         case 1:
-            WidgetItemImage(item: items[0], side: 110, corner: 30)
+            WidgetItemWithNameBadge(item: items[0], side: 110, corner: 30)
         default:
             HStack(spacing: -28) {
                 ForEach(Array(items.prefix(3).enumerated()), id: \.element) { index, item in
-                    WidgetItemImage(item: item, side: 92, corner: 26)
+                    WidgetItemWithNameBadge(item: item, side: 92, corner: 26)
                         .zIndex(Double(index))
                 }
             }

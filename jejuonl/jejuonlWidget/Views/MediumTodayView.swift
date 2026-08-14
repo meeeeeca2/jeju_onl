@@ -25,8 +25,7 @@ struct MediumTodayView: View {
 
             HStack(spacing: 8) {
                 ForEach(snapshot.restrictedItems, id: \.self) { item in
-                    WidgetItemImage(item: item, side: 76, corner: 20)
-                        .accessibilityLabel(item.koreanName)
+                    WidgetItemWithNameBadge(item: item, side: 76, corner: 20)
                 }
                 Spacer(minLength: 0)
             }

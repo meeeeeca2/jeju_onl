@@ -137,6 +137,11 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 
 ## 세션 로그
 
+### 2026-08-14 — 위젯 흰 판 재수정 + 중간/큰 칸 이름 뱃지
+
+- 직접 칠한 Material이 흰 판이 됨. containerBackground 제거 + containerBackgroundRemovable. widgetTexture(.glass)는 iOS 불가(visionOS only).
+- 중간 제한 품목·큰 칸 히어로에 작은 칸과 같은 이름 뱃지.
+
 ### 2026-08-14 — 위젯 유리 배경 + 아이콘 확대
 
 - Color.clear가 흰 판으로 보이던 것을 ultraThinMaterial + iOS 26 glassEffect로 교체.

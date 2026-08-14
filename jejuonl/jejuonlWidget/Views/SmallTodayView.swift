@@ -42,17 +42,8 @@ struct SingleRestrictedIcon: View {
     var side: CGFloat
 
     var body: some View {
-        ZStack(alignment: .bottom) {
-            WidgetItemImage(item: item, side: side, corner: side * 0.25)
-            Text(item.koreanName)
-                .font(.system(size: 9, weight: .bold))
-                .foregroundStyle(.white)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 3)
-                .background(Color.black.opacity(0.78), in: Capsule())
-                .offset(y: 3)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        WidgetItemWithNameBadge(item: item, side: side, corner: side * 0.25)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

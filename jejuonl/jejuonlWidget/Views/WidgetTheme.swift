@@ -6,20 +6,6 @@ enum WidgetPalette {
     static let hallabongGlow = hallabong.opacity(0.5)
 }
 
-/// Shared frosted plate for Small / Medium / Large. `Color.clear` becomes an opaque white system plate.
-struct WidgetGlassPlate: View {
-    var body: some View {
-        if #available(iOS 26.0, *) {
-            Rectangle()
-                .fill(.ultraThinMaterial)
-                .glassEffect(.regular, in: Rectangle())
-        } else {
-            Rectangle()
-                .fill(.ultraThinMaterial)
-        }
-    }
-}
-
 enum WidgetClockText {
     static func hm(_ date: Date) -> String {
         guard let calendar = try? SeoulCalendar.make() else { return "" }
@@ -46,6 +32,27 @@ struct WidgetItemImage: View {
             .clipShape(RoundedRectangle(cornerRadius: corner, style: .continuous))
             .shadow(color: .black.opacity(0.22), radius: side > 48 ? 6 : 3, y: side > 48 ? 4 : 2)
             .accessibilityHidden(true)
+    }
+}
+
+struct WidgetItemWithNameBadge: View {
+    let item: WasteItem
+    var side: CGFloat
+    var corner: CGFloat
+
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            WidgetItemImage(item: item, side: side, corner: corner)
+            Text(item.koreanName)
+                .font(.system(size: 9, weight: .bold))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 8)
+                .padding(.vertical, 3)
+                .background(Color.black.opacity(0.78), in: Capsule())
+                .offset(y: 3)
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(item.koreanName)
     }
 }
 

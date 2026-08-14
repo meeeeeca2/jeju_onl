@@ -1,5 +1,11 @@
 # Progress
 
+## widget-glass-and-name-badges (2026-08-14)
+
+- 유리 판: 커스텀 `containerBackground` + `WidgetGlassPlate`(ultraThinMaterial / glassEffect) 제거. iOS SDK에서 `widgetTexture(.glass)`는 visionOS-only(`@available(iOS, unavailable)`)라 생략. `.containerBackgroundRemovable(true)` + 커스텀 배경 없음 + `.contentMarginsDisabled()` 유지. 시스템이 iOS 26 기본 유리 텍스처를 씌움.
+- 이름 뱃지: `WidgetItemWithNameBadge`를 WidgetTheme에 추출(작은 위젯 1개 아이콘과 같은 하단 겹침 다크 캡슐). Medium 제한 품목, Large 히어로 1개·멀티에 적용. Large 주간 열·매일 행은 이름 없음. VoiceOver는 `koreanName`.
+- 검증: `jejuonl` 스킴 test 32 / build. 위젯 스킴 미실행. 커밋 없음.
+
 ## phase-4-widget (2026-08-14)
 
 - 한 일:
