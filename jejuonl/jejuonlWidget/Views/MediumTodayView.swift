@@ -25,21 +25,23 @@ struct MediumTodayView: View {
 
             HStack(spacing: 8) {
                 ForEach(snapshot.restrictedItems, id: \.self) { item in
-                    WidgetItemWithNameBadge(item: item, side: 76, corner: 20)
+                    WidgetItemWithNameBadge(item: item, side: 68, corner: 18)
                 }
                 Spacer(minLength: 0)
             }
             .padding(.top, 2)
 
-            Spacer(minLength: 0)
-
             Text(alwaysOnLine)
-                .font(.system(size: 11, weight: .semibold))
+                .font(.system(size: 10, weight: .semibold))
                 .foregroundStyle(.secondary)
                 .lineLimit(2)
-                .minimumScaleFactor(0.8)
+                .minimumScaleFactor(0.75)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.top, 6)
         }
-        .padding(10)
+        .padding(.horizontal, 12)
+        .padding(.top, 10)
+        .padding(.bottom, 12)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(mediumAccessibility)
     }
@@ -54,7 +56,9 @@ struct MediumTodayView: View {
     }
 
     private var alwaysOnLine: String {
-        snapshot.alwaysOnItems.map(\.shortKoreanName).joined(separator: " · ")
+        snapshot.alwaysOnItems.map { item in
+            item == .styrofoam ? "스티로폼" : item.shortKoreanName
+        }.joined(separator: " · ")
     }
 
     private var mediumAccessibility: String {

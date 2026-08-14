@@ -12,6 +12,10 @@
 - 이름 뱃지: `WidgetItemWithNameBadge`를 WidgetTheme에 추출(작은 위젯 1개 아이콘과 같은 하단 겹침 다크 캡슐). Medium 제한 품목, Large 히어로 1개·멀티에 적용. Large 주간 열·매일 행은 이름 없음. VoiceOver는 `koreanName`.
 - 검증: `jejuonl` 스킴 test 32 / build. 위젯 스킴 미실행. 커밋 없음.
 
+## phase-4 polish — medium always-on line (2026-08-14)
+
+- 중간 칸 하단 `종량제 · … · 스티로`가 위젯 바닥에 잘림. Spacer 제거, 아래 패딩 확보, 스티로폼 풀네임.
+
 ## phase-4-widget (2026-08-14)
 
 - 한 일:
