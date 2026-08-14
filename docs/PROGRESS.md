@@ -1,5 +1,10 @@
 # Progress
 
+## widget-small-header-and-fan-badges (2026-08-14)
+
+- 작은 칸 `지금`/`금`을 헤더만 가로 6pt 더 들여 모서리에서 뗌. 사진 크기는 GeometryReader 유지.
+- 2–3개 팬도 `WidgetItemWithNameBadge` (겹침·잘림 허용). 칸 밖 `offset` 없음.
+
 ## item-sheet-43-and-full-captions (2026-08-14)
 
 - 품목 시트 히어로 높이 240 → 가로:세로 **4:3**.

@@ -13,6 +13,7 @@ struct SmallTodayView: View {
                     .foregroundStyle(.white)
                     .lineLimit(1)
             }
+            .padding(.horizontal, 6)
             stage
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
@@ -64,7 +65,7 @@ private struct SmallFittedFan: View {
             ZStack(alignment: .bottomTrailing) {
                 HStack(spacing: -overlap) {
                     ForEach(Array(items.enumerated()), id: \.element) { index, item in
-                        WidgetItemImage(item: item, side: side, corner: side * 0.28)
+                        WidgetItemWithNameBadge(item: item, side: side, corner: side * 0.28)
                             .zIndex(Double(index))
                     }
                 }
