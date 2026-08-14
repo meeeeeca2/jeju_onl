@@ -11,12 +11,12 @@
 | 항목 | 값 |
 | --- | --- |
 | 날짜 | 2026-08-14 |
-| 제품 | 오늘 뭐 버려? / JejuBin — 제주 클린하우스 요일제 위젯 우선 앱 |
-| 설계 | `docs/design.md` Approved (2026-08-13) |
-| GUI 시안 | 잠김. HTML + PNG 재캡처 완료 (헤더 톱니 제거, 탭 라인 아이콘 SVG 고정, 품목 아이콘 베이지 풀블리드 세트) |
-| 코드 | 없음. Xcode 프로젝트 없음 |
-| Git | 원격 고정 `https://github.com/meeeeeca2/jeju_onl.git` (`origin`, 브랜치 `main`). 다른 레포 쓰지 않음 |
-| 다음 한 가지 | **페이즈 1 — Xcode 뼈대** (계획 승인 후). 태그 목표 `snapshot/phase-1-skeleton` |
+| 제품 | 오늘 뭐 버려? / jejuonl — 제주 클린하우스 요일제 위젯 우선 앱 |
+| 설계 | `docs/design.md` Approved (2026-08-13), 식별자는 페이즈 1 실제 값으로 수정 |
+| GUI 시안 | 잠김 |
+| 코드 | 페이즈 1 뼈대. `jejuonl/jejuonl.xcodeproj`. 엔진·화면 없음 |
+| Git | `https://github.com/meeeeeca2/jeju_onl.git` (`origin/main`) |
+| 다음 한 가지 | **페이즈 2 — ScheduleEngine + 카탈로그 + 단위 테스트** (계획 승인 후) |
 
 **아직 하지 말 것:** 승인 없이 구현 위임하지 않는다. `pbxproj`를 손으로 쓰지 않는다. 페이즈 1 태그 없이 페이즈 2 UI/엔진을 시작하지 않는다.
 
@@ -41,8 +41,9 @@
 ```
 /orchestrator-build-partner-v2
 Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mockups/.
-지금은 GUI 시안까지 잠겼고 앱 코드는 없다. Git 원격은 https://github.com/meeeeeca2/jeju_onl.git (origin/main)만 쓴다.
-다음 한 가지: 페이즈 1 Xcode 뼈대. 구현 전에 계획만 보여 주고 승인 기다려.
+페이즈 1 뼈대 완료 (태그 snapshot/phase-1-skeleton). Xcode는 jejuonl/jejuonl.xcodeproj.
+식별자: kr.jejuonl.jejuonl / kr.jejuonl.jejuonl.jejuonlWidget / group.kr.jejuonl.shared.
+다음 한 가지: 페이즈 2 ScheduleEngine. 구현 전에 계획만 보여 주고 승인 기다려.
 ```
 
 ---
@@ -52,7 +53,8 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 제품·도메인 전부는 `docs/design.md` **Resolved Decisions / Key Decisions**. 시안 리뷰로 추가 잠긴 것만 여기 적는다.
 
 - GitHub는 `https://github.com/meeeeeca2/jeju_onl.git`만 쓴다. 브랜치 `main`. 다른 원격·포크를 만들지 않는다.
-- 표시명 `오늘 뭐 버려?`. 번들 `kr.jejubin.app` / 위젯 `kr.jejubin.app.widget` / 그룹 `group.kr.jejubin.shared`.
+- 표시명 `오늘 뭐 버려?`. 모듈 `jejuonl` / `jejuonlWidget`. 앱 `kr.jejuonl.jejuonl`. 위젯 `kr.jejuonl.jejuonl.jejuonlWidget`. 그룹 `group.kr.jejuonl.shared`.
+- Xcode 프로젝트는 `jejuonl/jejuonl.xcodeproj`. 템플릿 폴더를 `App/` `Widget/`로 옮기지 않음.
 - 집 도시 = 서귀포시. 제주시만 투명페트 제한 품목.
 - 창 15:00–04:00. 배출일은 Seoul 04:00에 롤. 창 상태는 `beforeOpen` / `open` 두 값.
 - 위젯 도시 = Configuration Intent. App Groups는 시도만, 실패해도 제품은 동작.
@@ -81,10 +83,14 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 | `docs/mockups/icons/ui/*.svg` | 탭 라인 아이콘 |
 | `docs/mockups/app-icon.jpg` | 앱 아이콘 |
 | `docs/mockups/wallpaper.jpg` | 홈/잠금 배경만 |
-| `.gitignore` | Xcode/macOS 잡파일. design.md 최소안 |
-| `docs/PROGRESS.md` | 아직 없음. 페이즈 1에서 생성 |
-| `docs/INSTALL.md` | 아직 없음. 페이즈 1 초안 |
-| `JejuBin.xcodeproj` | 아직 없음 |
+| `README.md` | 한 페이지 소개 |
+| `.gitignore` | Xcode/macOS + `myscreenshot/` |
+| `docs/PROGRESS.md` | 페이즈 로그 |
+| `docs/INSTALL.md` | 비개발자 설치 초안 |
+| `jejuonl/jejuonl.xcodeproj` | 앱+위젯 템플릿 |
+| `jejuonl/jejuonl/` | 앱 소스 (지금 ContentView 빈 화면) |
+| `jejuonl/jejuonlWidget/` | 위젯 템플릿 + ConfigurationAppIntent |
+| `Shared/jejuonlCore/` | 빈 자리. 페이즈 2 |
 
 시안 화면: `home`, `today-open`, `today-wait`, `today-jeju`, `week`, `settings`, `notify-settings`, `onb-city`, `onb-notify`, `onb-widget`, `widget-edit`, `lock-notify`, `today-dark`.
 
@@ -97,7 +103,7 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 | # | 내용 | 태그 | 상태 |
 | --- | --- | --- | --- |
 | 0 | 설계 + GUI 시안 | — | **완료** |
-| 1 | Xcode 뼈대, gitignore, App Groups 시도 | `snapshot/phase-1-skeleton` | **다음** |
+| 1 | Xcode 뼈대, gitignore, App Groups 시도 | `snapshot/phase-1-skeleton` | **완료** |
 | 2 | schedule JSON + ScheduleEngine + 단위 테스트 | `snapshot/phase-2-schedule-engine` | 대기 |
 | 3 | 오늘 / 이번 주 / 도시 세그먼트 | `snapshot/phase-3-app-today-week` | 대기 |
 | 4 | Small·Medium·Large 위젯 | `snapshot/phase-4-widget` | 대기 |
@@ -127,6 +133,26 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 ---
 
 ## 세션 로그
+
+### 2026-08-14 — 페이즈 1 완료
+
+- 시뮬레이터 빈 앱 기동. Team Personal `D997V885SZ` 앱·위젯 동일.
+- App Groups: `group.kr.jejuonl.shared` 체크·entitlements 있음. 스크린샷의 노란 경고는 “실기기 없음 / 프로파일 없음”. 그룹 거절 아님. Personal Team이라 컨테이너는 미확인 → Intent가 위젯 도시 소스.
+- 번들은 템플릿 값으로 잠금 (`kr.jejuonl.jejuonl`). 서명 다시 흔들지 않음.
+- 폴더 대규모 이동 안 함. README / PROGRESS / INSTALL / Shared 자리 / 표시명.
+- 다음: 페이즈 2 계획.
+
+### 2026-08-14 — 페이즈 1 승인, Xcode 클릭 대기
+
+- 사용자 승인. `pbxproj` 손수 작성 금지라 앱+위젯은 Xcode 템플릿으로 만든다.
+- CLI `xcode-select`가 Command Line Tools를 가리킴. 시뮬레이터 검증 전에 Xcode.app으로 바꿔야 함.
+- 다음: 사용자가 빈 앱이 떴다고 알려 주면 폴더 정리·문서·커밋.
+
+### 2026-08-14 — 페이즈 1 계획 제시, 승인 대기
+
+- 범위: Xcode 앱+위젯 템플릿, 같은 Team, App Groups 시도, README/PROGRESS/INSTALL 초안, Shared 빈 자리.
+- 안 함: ScheduleEngine, 오늘/주간 UI, 위젯 얼굴, 알림, 온보딩. `pbxproj` 손수 작성 금지.
+- 사용자 클릭이 필요한 이유: 설계가 템플릿 생성을 요구함.
 
 ### 2026-08-14 — GitHub 원격 고정
 

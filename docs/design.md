@@ -105,7 +105,13 @@ v1은 계정·서버·앱스토어 없이, 본인 아이폰에 **무료 Apple ID
    브랜치는 `main` 하나여도, 페이즈가 끝날 때마다 커밋 + 주석 태그 `snapshot/phase-N-name`.
 
 10. **표시 이름은 「오늘 뭐 버려?」로 잠겼다.**  
-    번들 ID / 모듈명은 ASCII `JejuBin` / `kr.jejubin.app`. 바꾸지 않는다.
+    2026-08-14 페이즈 1에서 모듈/번들을 실제 Xcode 템플릿 값으로 잠갔다. 더 바꾸지 않는다.  
+    - 모듈/타깃: `jejuonl` / `jejuonlWidget`  
+    - 앱 번들: `kr.jejuonl.jejuonl`  
+    - 위젯 번들: `kr.jejuonl.jejuonl.jejuonlWidget`  
+    - App Group: `group.kr.jejuonl.shared`  
+    - 프로젝트 경로: `jejuonl/jejuonl.xcodeproj`  
+    문서 아래쪽에 남은 `JejuBin` / `kr.jejubin.app` 경로는 개념 이름일 뿐, 구현은 위 값을 쓴다.
 
 11. **이중 도시가 v1 기능이다. 집 = 서귀포시.**  
     온보딩은 집 도시를 고른다(서귀포시 카드 강조, 탭으로 확정). 그 값이 앱 현재 도시와 **새** 위젯 Intent 기본값을 심는다. 이후 전환은 앱 헤더 세그먼트와 위젯 Edit이다. 시뮬레이터/Preview 기본 도시도 서귀포시.

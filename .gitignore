@@ -2,6 +2,8 @@
 DerivedData/
 *.xcuserstate
 *.xcuserdata/
+xcuserdata/
+*.xcuserdatad/
 *.xccheckout
 *.moved-aside
 *.hmap
@@ -20,3 +22,6 @@ playground.xcworkspace
 
 # 에디터
 .idea/
+
+# 사용자 첨부 스크린샷 (인수인계용, 커밋 안 함)
+myscreenshot/
