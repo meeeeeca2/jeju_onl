@@ -29,7 +29,7 @@ struct OnboardingView: View {
     private var cityStep: some View {
         VStack(alignment: .leading, spacing: 0) {
             stepChrome(index: 1, title: AppIdentity.displayName, lead: "지금 주로 어디에 사나요?")
-            Spacer(minLength: 8)
+            Spacer(minLength: 12)
             CityPickerCards(
                 selected: pickedCity,
                 showsHeading: false,
@@ -37,6 +37,7 @@ struct OnboardingView: View {
             ) { city in
                 pickedCity = city
             }
+            Spacer(minLength: 12)
             Button {
                 guard let pickedCity else { return }
                 model.selectCity(pickedCity)
@@ -54,10 +55,8 @@ struct OnboardingView: View {
             )
             .shadow(color: pickedCity == nil ? .clear : Palette.hallabongGlow, radius: 12)
             .disabled(pickedCity == nil)
-            .padding(.top, 20)
             .accessibilityLabel("다음")
             .accessibilityHint(pickedCity == nil ? "도시를 고른 뒤에 쓸 수 있어요" : "알림 안내로 이동")
-            Spacer(minLength: 8)
         }
     }
 

@@ -31,18 +31,27 @@ struct CityPickerCards: View {
                     .foregroundStyle(Palette.inkDim)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            HStack(alignment: .center, spacing: 10) {
-                card(
-                    city: .jejuSi,
-                    tag: nil,
-                    subtitle: compactCopy ? "투명페트 전용함" : "투명페트 전용함 요일제"
-                )
-                card(
-                    city: .seogwipo,
-                    tag: "집",
-                    subtitle: compactCopy ? "플라스틱으로 표기" : "공식 안내는 플라스틱으로 표기"
-                )
-            }
+            Color.clear
+                .aspectRatio(2.08, contentMode: .fit)
+                .overlay {
+                    GeometryReader { geo in
+                        let side = max(0, (geo.size.width - 10) / 2)
+                        HStack(spacing: 10) {
+                            card(
+                                city: .jejuSi,
+                                tag: nil,
+                                subtitle: compactCopy ? "투명페트 전용함" : "투명페트 전용함 요일제",
+                                side: side
+                            )
+                            card(
+                                city: .seogwipo,
+                                tag: "집",
+                                subtitle: compactCopy ? "플라스틱으로 표기" : "공식 안내는 플라스틱으로 표기",
+                                side: side
+                            )
+                        }
+                    }
+                }
             Text(compactCopy ? "다른 시 → 위젯을 길게 눌러 바꾸기" : "다른 시에 가면 홈 화면 위젯을 길게 눌러 도시를 바꾸세요.")
                 .font(.caption)
                 .foregroundStyle(Palette.sea)
@@ -52,7 +61,7 @@ struct CityPickerCards: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private func card(city: CityID, tag: String?, subtitle: String) -> some View {
+    private func card(city: CityID, tag: String?, subtitle: String, side: CGFloat) -> some View {
         let isSelected = selected == city
         return Button {
             onSelect(city)
@@ -66,15 +75,17 @@ struct CityPickerCards: View {
                 Text(city.koreanName)
                     .font(.headline)
                     .foregroundStyle(Palette.ink)
-                    .fixedSize(horizontal: false, vertical: true)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.75)
                 Text(subtitle)
                     .font(.caption)
                     .foregroundStyle(Palette.inkDim)
-                    .fixedSize(horizontal: false, vertical: true)
+                    .lineLimit(3)
+                    .minimumScaleFactor(0.8)
+                Spacer(minLength: 0)
             }
             .padding(14)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .aspectRatio(1, contentMode: .fit)
+            .frame(width: side, height: side, alignment: .topLeading)
             .contentShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
             .appGlass(in: RoundedRectangle(cornerRadius: 20, style: .continuous))
             .overlay {
@@ -86,6 +97,7 @@ struct CityPickerCards: View {
             }
         }
         .buttonStyle(.plain)
+        .frame(width: side, height: side)
         .accessibilityLabel(cardLabel(city: city, tag: tag, subtitle: subtitle))
         .accessibilityHint(isSelected ? "선택됨" : "탭해서 집 도시로 고르기")
         .accessibilityAddTraits(isSelected ? .isSelected : [])
