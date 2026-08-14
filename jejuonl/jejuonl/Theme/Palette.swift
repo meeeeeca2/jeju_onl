@@ -50,6 +50,11 @@ struct AppBackground: View {
 }
 
 extension View {
+    /// `.buttonStyle(.plain)` only hits drawn text unless the frame is a hit target.
+    func fillsHitTarget() -> some View {
+        contentShape(Rectangle())
+    }
+
     @ViewBuilder
     func appGlass<S: Shape>(in shape: S) -> some View {
         if #available(iOS 26.0, *) {

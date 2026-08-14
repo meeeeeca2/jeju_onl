@@ -88,6 +88,8 @@ struct SettingsView: View {
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 13)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .fillsHitTarget()
         .accessibilityElement(children: .combine)
     }
 

@@ -25,11 +25,13 @@ struct CitySegment: View {
                 .foregroundStyle(selected ? Palette.basalt : Palette.inkDim)
                 .padding(.horizontal, 13)
                 .padding(.vertical, 6)
+                .frame(maxHeight: .infinity)
                 .background {
                     if selected {
                         Capsule().fill(Color.white.opacity(0.92))
                     }
                 }
+                .contentShape(Capsule())
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(selected ? .isSelected : [])

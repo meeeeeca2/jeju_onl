@@ -47,6 +47,7 @@ struct OnboardingView: View {
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
+                    .contentShape(Capsule())
             }
             .buttonStyle(.plain)
             .foregroundStyle(pickedCity == nil ? Palette.ink.opacity(0.55) : Color.white)
@@ -77,6 +78,7 @@ struct OnboardingView: View {
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
+                        .contentShape(Capsule())
                 }
                 .buttonStyle(.plain)
                 .foregroundStyle(.white)
@@ -94,6 +96,7 @@ struct OnboardingView: View {
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
+                        .contentShape(Capsule())
                 }
                 .buttonStyle(.plain)
                 .foregroundStyle(Palette.inkDim)
@@ -127,6 +130,7 @@ struct OnboardingView: View {
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
+                    .contentShape(Capsule())
             }
             .buttonStyle(.plain)
             .foregroundStyle(.white)

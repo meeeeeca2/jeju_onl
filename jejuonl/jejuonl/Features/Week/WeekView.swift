@@ -52,6 +52,7 @@ struct WeekView: View {
                     selectedDay = DaySheet(snapshot: day)
                 } label: {
                     weekRow(day, highlighted: isToday)
+                        .fillsHitTarget()
                 }
                 .buttonStyle(.plain)
             }

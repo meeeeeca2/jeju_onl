@@ -57,17 +57,24 @@ struct NotificationSettingsView: View {
 
     private var controlsCard: some View {
         VStack(spacing: 0) {
-            HStack {
-                Text("알림")
-                    .font(.system(size: 15, weight: .medium))
-                    .foregroundStyle(Palette.ink)
-                Spacer()
-                Toggle("알림", isOn: masterBinding)
-                    .labelsHidden()
-                    .tint(Palette.hallabong)
+            Button {
+                Task { await model.setNotificationsEnabled(!prefs.isEnabled) }
+            } label: {
+                HStack {
+                    Text("알림")
+                        .font(.system(size: 15, weight: .medium))
+                        .foregroundStyle(Palette.ink)
+                    Spacer()
+                    Toggle("알림", isOn: masterBinding)
+                        .labelsHidden()
+                        .tint(Palette.hallabong)
+                        .allowsHitTesting(false)
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 13)
+                .fillsHitTarget()
             }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 13)
+            .buttonStyle(.plain)
             .accessibilityElement(children: .combine)
 
             rowDivider
@@ -82,17 +89,24 @@ struct NotificationSettingsView: View {
 
             rowDivider
 
-            HStack {
-                Text("저녁에도")
-                    .font(.system(size: 15, weight: .medium))
-                    .foregroundStyle(Palette.ink)
-                Spacer()
-                Toggle("저녁에도", isOn: eveningBinding)
-                    .labelsHidden()
-                    .tint(Palette.hallabong)
+            Button {
+                model.setEveningEnabled(!prefs.eveningEnabled)
+            } label: {
+                HStack {
+                    Text("저녁에도")
+                        .font(.system(size: 15, weight: .medium))
+                        .foregroundStyle(Palette.ink)
+                    Spacer()
+                    Toggle("저녁에도", isOn: eveningBinding)
+                        .labelsHidden()
+                        .tint(Palette.hallabong)
+                        .allowsHitTesting(false)
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 13)
+                .fillsHitTarget()
             }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 13)
+            .buttonStyle(.plain)
             .accessibilityElement(children: .combine)
 
             if prefs.eveningEnabled {
@@ -196,6 +210,7 @@ struct NotificationSettingsView: View {
             .padding(.horizontal, 12)
             .padding(.vertical, 6)
             .background(Palette.hallabong, in: Capsule())
+            .contentShape(Capsule())
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 12)
@@ -213,6 +228,7 @@ struct NotificationSettingsView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 12)
+                .fillsHitTarget()
         }
         .buttonStyle(.plain)
         .appGlass(in: RoundedRectangle(cornerRadius: 16, style: .continuous))
