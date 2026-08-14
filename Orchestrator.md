@@ -14,11 +14,11 @@
 | 제품 | 오늘 뭐 버려? / jejuonl — 제주 클린하우스 요일제 위젯 우선 앱 |
 | 설계 | `docs/design.md` Approved (2026-08-13), 식별자는 페이즈 1 실제 값으로 수정 |
 | GUI 시안 | 잠김 |
-| 코드 | 페이즈 3 앱 화면 완료. 위젯 얼굴·알림·온보딩 풀스크린은 없음 |
+| 코드 | 페이즈 4 위젯 얼굴 완료. 알림·온보딩 풀스크린은 없음 |
 | Git | `https://github.com/meeeeeca2/jeju_onl.git` (`origin/main`) |
-| 다음 한 가지 | **페이즈 4 — Small/Medium/Large 위젯** (계획 승인 후) |
+| 다음 한 가지 | **페이즈 5 — 로컬 알림** (계획 승인 후) |
 
-**아직 하지 말 것:** 승인 없이 구현 위임하지 않는다. 페이즈 3 태그 없이 페이즈 4 위젯을 시작하지 않는다.
+**아직 하지 말 것:** 승인 없이 구현 위임하지 않는다. 페이즈 4 태그 없이 페이즈 5 알림을 시작하지 않는다. 위젯은 앱 스킴 Run 후 홈에 붙인다.
 
 ---
 
@@ -45,7 +45,8 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 식별자: kr.jejuonl.jejuonl / kr.jejuonl.jejuonl.jejuonlWidget / group.kr.jejuonl.shared.
 페이즈 2 완료 (태그 snapshot/phase-2-schedule-engine). 단위 테스트 25개 초록.
 페이즈 3 완료 (태그 snapshot/phase-3-app-today-week). 시뮬 첫 화면은 도시 두 카드.
-다음 한 가지: 페이즈 4 위젯 얼굴. 구현 전에 계획만 보여 주고 승인 기다려.
+페이즈 4 완료 (태그 snapshot/phase-4-widget). 홈에 작은/넓은/큰 칸을 붙이면 됨. 위젯 스킴 Run 금지.
+다음 한 가지: 페이즈 5 로컬 알림. 구현 전에 계획만 보여 주고 승인 기다려.
 ```
 
 ---
@@ -108,7 +109,7 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 | 1 | Xcode 뼈대, gitignore, App Groups 시도 | `snapshot/phase-1-skeleton` | **완료** |
 | 2 | schedule JSON + ScheduleEngine + 단위 테스트 | `snapshot/phase-2-schedule-engine` | **완료** |
 | 3 | 오늘 / 이번 주 / 도시 세그먼트 | `snapshot/phase-3-app-today-week` | **완료** |
-| 4 | Small·Medium·Large 위젯 | `snapshot/phase-4-widget` | 대기 |
+| 4 | Small·Medium·Large 위젯 | `snapshot/phase-4-widget` | **완료** |
 | 5 | 로컬 알림 + 알림 설정 | `snapshot/phase-5-notifications` | 대기 |
 | 6 | 온보딩·다듬기·INSTALL | `snapshot/phase-6-onboarding-install` | 대기 |
 
@@ -135,6 +136,17 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 ---
 
 ## 세션 로그
+
+### 2026-08-14 — 페이즈 4 완료
+
+- Intent 도시, Small/Medium/Large, timelineDates. 테스트 32 초록.
+- 위젯 스킴 실행 안 함. 사용자는 앱 Run 후 홈에 붙이면 됨.
+- 다음: 페이즈 5 계획.
+
+### 2026-08-14 — 페이즈 4 계획 제시, 승인 대기
+
+- 범위: AppIntent 도시, Small 1/2/3, Medium, Large 7열, timelineDates. 위젯 스킴 Run 금지(홈에 붙이기).
+- 안 함: 알림, 온보딩, 얼굴 위 도시 토글, Live Activity 신규.
 
 ### 2026-08-14 — 페이즈 3 사용자 실기기(시뮬) 확인
 

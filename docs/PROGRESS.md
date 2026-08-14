@@ -1,5 +1,38 @@
 # Progress
 
+## phase-4-widget (2026-08-14)
+
+- 한 일:
+  - 템플릿 emoji `ConfigurationAppIntent`를 `TodayWidgetConfigIntent` + `CityAppEnum`(제주시/서귀포시, 기본 `.seogwipo`)로 교체. `cityID`는 force unwrap 없이 실패 시 서귀포.
+  - 위젯 kind `kr.jejuonl.widget.today`. 갤러리 표시명 `오늘 뭐 버려?`. 설명 `오늘 클린하우스에 넣을 수 있는 쓰레기를 보여 줍니다`.
+  - `TodayProvider`: `WidgetTimelineDates.timelineDates(from:count:4, calendar: SeoulCalendar)` + `policy = .atEnd`. `Calendar.current` 시간별/자정 엔트리 없음.
+  - 도시 소스는 Intent만. App Group / UserDefaults로 일정 도시를 읽지 않음.
+  - `TodayLoad` / `TodayEntry`. 카탈로그는 `ScheduleCatalog.load()` / `Bundle(for: CatalogBundleToken.self)`. `catalogStale`은 계산만 하고 위젯 배너는 없음.
+  - Small 1/2/3(뱃지·팬·숫자 3), Medium(상태+도시+제한 타일+매일 짧은 라벨), Large(히어로+월–일 7열+내일 한 줄).
+  - 품목 JPG 10종을 위젯 에셋에 복사. 얼굴 탭은 기본 앱 열기. 도시 토글 버튼 없음.
+  - `WidgetBundle`은 `jejuonlWidget()`만 등록. Control / Live Activity 파일은 유지하되 갤러리에 안 나옴.
+  - 위젯 `INFOPLIST_KEY_CFBundleDisplayName` = `오늘 뭐 버려?`.
+- 검증:
+  ```
+  export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+  xcodebuild test -project jejuonl/jejuonl.xcodeproj -scheme jejuonl \
+    -destination 'platform=iOS Simulator,name=iPhone 17 Pro' \
+    -only-testing:jejuonlTests
+  xcodebuild build -project jejuonl/jejuonl.xcodeproj -scheme jejuonl \
+    -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+  ```
+  - 결과: `** TEST SUCCEEDED **` / `** BUILD SUCCEEDED **`
+  - xcresult: `totalTestCount: 32`, `passedTests: 32`, `failedTests: 0`, `skippedTests: 0`
+  - 구성: ScheduleEngineTests 11 / ScheduleCatalogTests 8 / WidgetTimelineDatesTests 3 / ClockTimeTests 3 / CountdownFormatTests 7
+  - 빌드 산출 Info.plist: `CFBundleDisplayName` = `오늘 뭐 버려?`
+  - 위젯 스킴(jejuonlWidgetExtension)은 실행하지 않음.
+- 남긴 것:
+  - 온보딩 풀스크린(페이즈 6), NotificationScheduler/SET-2(페이즈 5).
+  - Control / Live Activity 소스 파일은 남아 있으나 WidgetBundle 미등록.
+- 태그: snapshot/phase-4-widget
+- 오케스트레이터 재검증: 테스트 32 passed.
+- 다음: 페이즈 5 — 로컬 알림 + 알림 설정
+
 ## phase-3-app-today-week (2026-08-14)
 
 - 한 일:

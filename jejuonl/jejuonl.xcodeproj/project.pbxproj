@@ -224,20 +224,20 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
-		A2F2C014302E000100000014 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				A2F2C00D302E00010000000D /* AppGroupSettingsStore.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
 		A2F2C013302E000100000013 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				A2F2C00C302E00010000000C /* schedule_v1.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A2F2C014302E000100000014 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A2F2C00D302E00010000000D /* AppGroupSettingsStore.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		EDF4B81C302E961A005A0C9D = {
@@ -824,7 +824,7 @@
 				DEVELOPMENT_TEAM = D997V885SZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = jejuonlWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = jejuonlWidget;
+				INFOPLIST_KEY_CFBundleDisplayName = "오늘 뭐 버려?";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -855,7 +855,7 @@
 				DEVELOPMENT_TEAM = D997V885SZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = jejuonlWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = jejuonlWidget;
+				INFOPLIST_KEY_CFBundleDisplayName = "오늘 뭐 버려?";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

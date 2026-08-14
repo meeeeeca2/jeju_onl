@@ -1,88 +1,99 @@
-//
-//  jejuonlWidget.swift
-//  jejuonlWidget
-//
-//  Created by meeeeeca Jeong on 8/14/26.
-//
-
-import WidgetKit
 import SwiftUI
+import WidgetKit
 
-struct Provider: AppIntentTimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
+struct TodayProvider: AppIntentTimelineProvider {
+    func placeholder(in context: Context) -> TodayEntry {
+        TodayLoader.placeholder()
     }
 
-    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: configuration)
+    func snapshot(for configuration: TodayWidgetConfigIntent, in context: Context) async -> TodayEntry {
+        let now = Date()
+        let city = configuration.city.cityID
+        return TodayEntry(date: now, load: TodayLoader.load(city: city, at: now), configuredCity: city)
     }
-    
-    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
-        var entries: [SimpleEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
+    func timeline(for configuration: TodayWidgetConfigIntent, in context: Context) async -> Timeline<TodayEntry> {
+        let now = Date()
+        let city = configuration.city.cityID
+        guard let calendar = try? SeoulCalendar.make() else {
+            let entry = TodayEntry(date: now, load: .parseFailed, configuredCity: city)
+            return Timeline(entries: [entry], policy: .atEnd)
         }
 
+        let dates = WidgetTimelineDates.timelineDates(from: now, count: 4, calendar: calendar)
+        let entries = dates.map { date in
+            TodayEntry(
+                date: date,
+                load: TodayLoader.load(city: city, at: date),
+                configuredCity: city
+            )
+        }
         return Timeline(entries: entries, policy: .atEnd)
     }
-
-//    func relevances() async -> WidgetRelevances<ConfigurationAppIntent> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
 }
 
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let configuration: ConfigurationAppIntent
-}
-
-struct jejuonlWidgetEntryView : View {
-    var entry: Provider.Entry
+struct TodayWidgetView: View {
+    @Environment(\.widgetFamily) private var family
+    var entry: TodayEntry
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Favorite Emoji:")
-            Text(entry.configuration.favoriteEmoji)
+        switch entry.load {
+        case .cityMissing:
+            WidgetMessageView(text: "도시를 선택해 주세요")
+        case .parseFailed:
+            WidgetMessageView(text: "앱을 다시 설치해 주세요")
+        case .schemaTooNew:
+            WidgetMessageView(text: "앱을 업데이트하세요")
+        case .ready(let snapshot, _):
+            switch family {
+            case .systemSmall:
+                SmallTodayView(snapshot: snapshot)
+            case .systemMedium:
+                MediumTodayView(snapshot: snapshot)
+            case .systemLarge:
+                LargeTodayView(snapshot: snapshot)
+            default:
+                SmallTodayView(snapshot: snapshot)
+            }
         }
     }
 }
 
 struct jejuonlWidget: Widget {
-    let kind: String = "jejuonlWidget"
+    let kind: String = "kr.jejuonl.widget.today"
 
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
-            jejuonlWidgetEntryView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
+        AppIntentConfiguration(
+            kind: kind,
+            intent: TodayWidgetConfigIntent.self,
+            provider: TodayProvider()
+        ) { entry in
+            TodayWidgetView(entry: entry)
+                .containerBackground(for: .widget) {
+                    Color.clear
+                }
         }
-    }
-}
-
-extension ConfigurationAppIntent {
-    fileprivate static var smiley: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "😀"
-        return intent
-    }
-    
-    fileprivate static var starEyes: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "🤩"
-        return intent
+        .configurationDisplayName("오늘 뭐 버려?")
+        .description("오늘 클린하우스에 넣을 수 있는 쓰레기를 보여 줍니다")
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .contentMarginsDisabled()
     }
 }
 
 #Preview(as: .systemSmall) {
     jejuonlWidget()
 } timeline: {
-    SimpleEntry(date: .now, configuration: .smiley)
-    SimpleEntry(date: .now, configuration: .starEyes)
+    TodayLoader.placeholder()
+}
+
+#Preview(as: .systemMedium) {
+    jejuonlWidget()
+} timeline: {
+    TodayLoader.placeholder()
+}
+
+#Preview(as: .systemLarge) {
+    jejuonlWidget()
+} timeline: {
+    TodayLoader.placeholder()
 }
