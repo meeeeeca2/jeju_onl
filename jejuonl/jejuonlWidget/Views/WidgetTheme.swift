@@ -123,7 +123,7 @@ struct WidgetItemWithNameBadge: View {
                 .padding(.horizontal, 8)
                 .padding(.vertical, 3)
                 .background(Color.black.opacity(0.78), in: Capsule())
-                .offset(y: 3)
+                .padding(.bottom, 6)
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(item.koreanName)
