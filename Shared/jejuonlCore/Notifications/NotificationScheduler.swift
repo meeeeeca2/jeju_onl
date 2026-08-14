@@ -1,7 +1,7 @@
 import Foundation
-import UserNotifications
+@preconcurrency import UserNotifications
 
-struct NotificationScheduler: Sendable {
+struct NotificationScheduler {
     var engine: ScheduleEngine
     var center: UNUserNotificationCenter
 
