@@ -9,28 +9,28 @@ struct ItemTile: View {
 
         var side: CGFloat {
             switch self {
-            case .large: return 148
-            case .regular: return 96
-            case .daily: return 48
-            case .week: return 40
+            case .large: return 188
+            case .regular: return 132
+            case .daily: return 76
+            case .week: return 58
             }
         }
 
         var corner: CGFloat {
             switch self {
-            case .large: return 32
-            case .regular: return 22
-            case .daily: return 14
-            case .week: return 12
+            case .large: return 40
+            case .regular: return 28
+            case .daily: return 20
+            case .week: return 16
             }
         }
 
         var captionSize: CGFloat {
             switch self {
-            case .large: return 12
-            case .regular: return 11
-            case .daily: return 9
-            case .week: return 10
+            case .large: return 16
+            case .regular: return 15
+            case .daily: return 13
+            case .week: return 13
             }
         }
     }
@@ -62,7 +62,7 @@ struct ItemTile: View {
     }
 
     private var tileStack: some View {
-        VStack(spacing: kind == .daily ? 4 : 7) {
+        VStack(spacing: kind == .daily ? 6 : 8) {
             Image(item.assetName)
                 .resizable()
                 .scaledToFill()

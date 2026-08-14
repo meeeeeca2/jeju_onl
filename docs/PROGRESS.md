@@ -1,5 +1,13 @@
 # Progress
 
+## ui-scale-item-tiles (2026-08-14)
+
+- 품목 타일·캡션을 눈에 띄게 키움 (`ItemTile.SizeKind`: large 188/40/16, regular 132/28/15, daily 76/20/13, week 58/16/13). daily/week 간격 6·8.
+- 인접 글자만: `SectionLabel` 13, 주간 요일 글자 15 / 폭 28. 위젯·온보딩·CitySegment·알림·엔진은 그대로.
+- 오늘만/매일, `WeekDaySheet`, 주간 행 아이콘은 `ScrollView(.horizontal)` + `scrollIndicators(.hidden)` + `scrollBounceBehavior(.basedOnSize)`. 넘치면 좌우 스크롤, 스크롤바 없음. 주간 행은 그대로 하루 시트 버튼, 아이콘만 가로 스크롤.
+- 품목 시트 히어로는 가운데 `ItemTile` 제거. `Image` 전폭·높이 240, 시트 상단 0pt(그레버가 사진 위에 겹침). 제목 20 / 본문 15.
+- 검증: 스킴 `jejuonl` only. `** TEST SUCCEEDED **` / `** BUILD SUCCEEDED **`. `jejuonlWidgetExtension` 미실행.
+
 ## item-detail-sheet (2026-08-14)
 
 - 오늘 `오늘만`/`매일` 타일, `beforeOpen` 상태 카드 음식물 타일, 주간 `WeekDaySheet` 타일 탭 → 다크 바텀시트(큰 사진·이름·메타·짧은 배출 안내). 타일 크기·캡션·간격·그림자는 그대로.

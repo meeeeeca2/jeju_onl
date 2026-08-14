@@ -59,7 +59,7 @@ struct SectionLabel: View {
 
     var body: some View {
         Text(text)
-            .font(.system(size: 10, weight: .bold))
+            .font(.system(size: 13, weight: .bold))
             .tracking(0.8)
             .foregroundStyle(Palette.inkFaint)
             .padding(.horizontal, 2)

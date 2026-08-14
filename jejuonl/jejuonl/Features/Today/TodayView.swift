@@ -123,24 +123,27 @@ struct TodayView: View {
 
     private func restrictedRow(_ items: [WasteItem]) -> some View {
         let kind: ItemTile.SizeKind = items.count == 1 ? .large : .regular
-        return HStack(alignment: .top, spacing: 14) {
-            ForEach(items, id: \.self) { item in
-                ItemTile(item: item, kind: kind, onSelect: { showItem(item) })
-            }
-            if items.isEmpty {
-                Spacer(minLength: 0)
+        return ScrollView(.horizontal) {
+            HStack(alignment: .top, spacing: 14) {
+                ForEach(items, id: \.self) { item in
+                    ItemTile(item: item, kind: kind, onSelect: { showItem(item) })
+                }
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .scrollIndicators(.hidden)
+        .scrollBounceBehavior(.basedOnSize)
     }
 
     private func dailyRow(_ items: [WasteItem]) -> some View {
-        HStack(alignment: .bottom, spacing: 10) {
-            ForEach(items, id: \.self) { item in
-                ItemTile(item: item, kind: .daily, useShortName: true, onSelect: { showItem(item) })
+        ScrollView(.horizontal) {
+            HStack(alignment: .bottom, spacing: 10) {
+                ForEach(items, id: \.self) { item in
+                    ItemTile(item: item, kind: .daily, useShortName: true, onSelect: { showItem(item) })
+                }
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .scrollIndicators(.hidden)
+        .scrollBounceBehavior(.basedOnSize)
     }
 
     private func showItem(_ item: WasteItem) {

@@ -65,15 +65,18 @@ struct WeekView: View {
     private func weekRow(_ day: DischargeSnapshot, highlighted: Bool) -> some View {
         HStack(spacing: 8) {
             Text(day.dischargeWeekday.shortKoreanName)
-                .font(.system(size: 12, weight: .bold))
+                .font(.system(size: 15, weight: .bold))
                 .foregroundStyle(highlighted ? Palette.hallabongInk : Palette.inkDim)
-                .frame(width: 22, alignment: .center)
-            HStack(spacing: 6) {
-                ForEach(day.restrictedItems, id: \.self) { item in
-                    ItemTile(item: item, kind: .week, showsCaption: false)
+                .frame(width: 28, alignment: .center)
+            ScrollView(.horizontal) {
+                HStack(spacing: 6) {
+                    ForEach(day.restrictedItems, id: \.self) { item in
+                        ItemTile(item: item, kind: .week, showsCaption: false)
+                    }
                 }
             }
-            Spacer(minLength: 0)
+            .scrollIndicators(.hidden)
+            .scrollBounceBehavior(.basedOnSize)
             if highlighted {
                 Circle()
                     .fill(Palette.hallabong)
@@ -145,14 +148,17 @@ private struct WeekDaySheet: View {
                     .foregroundStyle(Palette.ink)
                     .frame(maxWidth: .infinity)
                     .padding(.top, 8)
-                HStack(spacing: 14) {
-                    ForEach(snapshot.restrictedItems, id: \.self) { item in
-                        ItemTile(item: item, kind: .regular, onSelect: {
-                            selectedItem = ItemDetailSelection(item: item)
-                        })
+                ScrollView(.horizontal) {
+                    HStack(spacing: 14) {
+                        ForEach(snapshot.restrictedItems, id: \.self) { item in
+                            ItemTile(item: item, kind: .regular, onSelect: {
+                                selectedItem = ItemDetailSelection(item: item)
+                            })
+                        }
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .scrollIndicators(.hidden)
+                .scrollBounceBehavior(.basedOnSize)
                 Text(SeoulClockText.windowRange(open: snapshot.windowOpen, close: snapshot.windowClose))
                     .font(.system(size: 12))
                     .foregroundStyle(Palette.inkDim)
