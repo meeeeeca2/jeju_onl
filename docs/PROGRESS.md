@@ -9,6 +9,10 @@
 - 작은 칸 `지금`/`금`을 헤더만 가로 6pt 더 들여 모서리에서 뗌. 사진 크기는 GeometryReader 유지.
 - 2–3개 팬도 `WidgetItemWithNameBadge` (겹침·잘림 허용). 칸 밖 `offset` 없음.
 
+## today-row-edge-scroll (2026-08-14)
+
+- 오늘만/매일 가로 스크롤이 페이지 18pt 여백에서 잘리던 것. 스크롤 영역만 화면 끝까지, 안쪽 패딩 18로 첫 타일 그리드는 유지.
+
 ## today-restricted-always-large (2026-08-14)
 
 - 오늘 `오늘만` 타일은 품목 개수와 관계없이 `.large`. 2개 이상은 가로 스크롤.

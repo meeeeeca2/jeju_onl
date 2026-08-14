@@ -122,27 +122,37 @@ struct TodayView: View {
     }
 
     private func restrictedRow(_ items: [WasteItem]) -> some View {
-        ScrollView(.horizontal) {
-            HStack(alignment: .top, spacing: 14) {
-                ForEach(items, id: \.self) { item in
-                    ItemTile(item: item, kind: .large, onSelect: { showItem(item) })
-                }
+        edgeToEdgeRow(alignment: .top, spacing: 14) {
+            ForEach(items, id: \.self) { item in
+                ItemTile(item: item, kind: .large, onSelect: { showItem(item) })
             }
         }
-        .scrollIndicators(.hidden)
-        .scrollBounceBehavior(.basedOnSize)
     }
 
     private func dailyRow(_ items: [WasteItem]) -> some View {
-        ScrollView(.horizontal) {
-            HStack(alignment: .bottom, spacing: 10) {
-                ForEach(items, id: \.self) { item in
-                    ItemTile(item: item, kind: .daily, onSelect: { showItem(item) })
-                }
+        edgeToEdgeRow(alignment: .bottom, spacing: 10) {
+            ForEach(items, id: \.self) { item in
+                ItemTile(item: item, kind: .daily, onSelect: { showItem(item) })
             }
+        }
+    }
+
+    /// Scroll viewport reaches the screen edge so tiles are not clipped by the 18pt page gutter.
+    /// Matching inner padding keeps the first tile on the existing grid.
+    private func edgeToEdgeRow<Content: View>(
+        alignment: VerticalAlignment,
+        spacing: CGFloat,
+        @ViewBuilder content: () -> Content
+    ) -> some View {
+        ScrollView(.horizontal) {
+            HStack(alignment: alignment, spacing: spacing) {
+                content()
+            }
+            .padding(.horizontal, 18)
         }
         .scrollIndicators(.hidden)
         .scrollBounceBehavior(.basedOnSize)
+        .padding(.horizontal, -18)
     }
 
     private func showItem(_ item: WasteItem) {
