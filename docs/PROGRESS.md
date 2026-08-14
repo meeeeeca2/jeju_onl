@@ -1,5 +1,9 @@
 # Progress
 
+## widget-small-full-status (2026-08-14)
+
+- 작은 칸 상태 문구를 중간 칸과 같이 `지금 배출 가능` / `오늘 저녁부터`. 한 줄 `minimumScaleFactor(0.75)`로 칸을 넘기지 않음.
+
 ## widget-small-header-and-fan-badges (2026-08-14)
 
 - 작은 칸 `지금`/`금`을 헤더만 가로 6pt 더 들여 모서리에서 뗌. 사진 크기는 GeometryReader 유지.

@@ -6,7 +6,9 @@ struct SmallTodayView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
-                WidgetStatusMark(window: snapshot.window, compact: true)
+                WidgetStatusMark(window: snapshot.window, compact: false)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.75)
                 Spacer(minLength: 4)
                 Text(snapshot.dischargeWeekday.shortKoreanName)
                     .font(.system(size: 11, weight: .semibold))
