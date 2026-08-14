@@ -9,6 +9,10 @@
 - 작은 칸 `지금`/`금`을 헤더만 가로 6pt 더 들여 모서리에서 뗌. 사진 크기는 GeometryReader 유지.
 - 2–3개 팬도 `WidgetItemWithNameBadge` (겹침·잘림 허용). 칸 밖 `offset` 없음.
 
+## settings-city-shows-selection (2026-08-14)
+
+- 설정 → 도시 시트에 `selected: model.settings.city`를 넘김. `집` 제거 후 선택이 안 보이던 것.
+
 ## city-picker-drop-home-tag (2026-08-14)
 
 - 도시 카드의 고정 `집` 태그 제거(설정·온보딩·오늘/주간 미선택 동일 뷰). 선택은 주황 테두리만.

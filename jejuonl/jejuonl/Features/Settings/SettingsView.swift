@@ -113,7 +113,7 @@ struct SettingsView: View {
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundStyle(Palette.ink)
                     .padding(.top, 8)
-                CityPickerCards { city in
+                CityPickerCards(selected: model.settings.city) { city in
                     model.selectCity(city)
                     showsCityPicker = false
                 }
