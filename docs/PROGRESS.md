@@ -1,5 +1,10 @@
 # Progress
 
+## onboarding-city-cards (2026-08-14)
+
+- 실기기: 도시 카드가 화면을 세로로 채움, 서귀포 테두리만 있고 다음은 꺼짐, 터치가 글자에만 반응.
+- 카드 높이 고정, `contentShape`로 카드 전체 탭. 온보딩 기본 선택 서귀포 → 다음 활성.
+
 ## phase-6-onboarding-install (2026-08-14)
 
 - 한 일:

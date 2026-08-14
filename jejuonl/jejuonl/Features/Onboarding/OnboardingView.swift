@@ -3,7 +3,7 @@ import SwiftUI
 struct OnboardingView: View {
     @Environment(AppModel.self) private var model
     @State private var step = 1
-    @State private var pickedCity: CityID?
+    @State private var pickedCity: CityID? = .seogwipo
     @State private var isRequestingNotifications = false
 
     var body: some View {

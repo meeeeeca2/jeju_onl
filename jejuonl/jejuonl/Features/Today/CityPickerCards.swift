@@ -31,20 +31,19 @@ struct CityPickerCards: View {
                     .foregroundStyle(Palette.inkDim)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            HStack(spacing: 10) {
+            HStack(alignment: .top, spacing: 10) {
                 card(
                     city: .jejuSi,
                     tag: nil,
-                    subtitle: compactCopy ? "투명페트 전용함" : "투명페트 전용함 요일제",
-                    recommended: false
+                    subtitle: compactCopy ? "투명페트 전용함" : "투명페트 전용함 요일제"
                 )
                 card(
                     city: .seogwipo,
                     tag: "집",
-                    subtitle: compactCopy ? "플라스틱으로 표기" : "공식 안내는 플라스틱으로 표기",
-                    recommended: true
+                    subtitle: compactCopy ? "플라스틱으로 표기" : "공식 안내는 플라스틱으로 표기"
                 )
             }
+            .fixedSize(horizontal: false, vertical: true)
             Text(compactCopy ? "다른 시 → 위젯을 길게 눌러 바꾸기" : "다른 시에 가면 홈 화면 위젯을 길게 눌러 도시를 바꾸세요.")
                 .font(.caption)
                 .foregroundStyle(Palette.sea)
@@ -54,9 +53,8 @@ struct CityPickerCards: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private func card(city: CityID, tag: String?, subtitle: String, recommended: Bool) -> some View {
+    private func card(city: CityID, tag: String?, subtitle: String) -> some View {
         let isSelected = selected == city
-        let showStroke = isSelected || (recommended && selected == nil)
         return Button {
             onSelect(city)
         } label: {
@@ -74,13 +72,13 @@ struct CityPickerCards: View {
                     .font(.caption)
                     .foregroundStyle(Palette.inkDim)
                     .fixedSize(horizontal: false, vertical: true)
-                Spacer(minLength: 0)
             }
             .padding(14)
-            .frame(maxWidth: .infinity, minHeight: 128, alignment: .topLeading)
+            .frame(maxWidth: .infinity, alignment: .topLeading)
+            .contentShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
             .appGlass(in: RoundedRectangle(cornerRadius: 20, style: .continuous))
             .overlay {
-                if showStroke {
+                if isSelected {
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
                         .stroke(Palette.hallabong, lineWidth: 2)
                         .shadow(color: Palette.hallabongGlow, radius: 10)
