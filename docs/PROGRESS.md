@@ -1,5 +1,31 @@
 # Progress
 
+## phase-2-schedule-engine (2026-08-14)
+
+- 한 일:
+  - `Shared/jejuonlCore/` 순수 Swift 코어: CityID, WasteItem, WindowState, LocaleWeekday, DischargeSnapshot, AppSettings/NotificationPrefs/ClockTime, SeoulCalendar, ScheduleCatalog, ScheduleEngine, WidgetTimelineDates, ScheduleEngineError.
+  - `schedule_v1.json` 스키마 1 (제주시 PET 구분, 서귀포 PET 없음, `foodWasteAlways` 없음).
+  - `jejuonlTests`: E1–E10, nextRestrictedChange/nextWindowToggle, 카탈로그 로드·요일표·unknown item·restriction-disabled union, timelineDates 세 시각, ClockTime 클램프.
+  - pbxproj: Core `.swift` 11개를 jejuonl / jejuonlWidgetExtension / jejuonlTests Sources에, `schedule_v1.json`을 세 타깃 Copy Bundle Resources에 추가.
+  - `Shared/jejuonlCore/.gitkeep` 삭제. UI·위젯 얼굴·알림 스케줄러·AppGroup store는 안 만듦.
+- 검증:
+  ```
+  export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+  xcodebuild test -project jejuonl/jejuonl.xcodeproj -scheme jejuonl \
+    -destination 'platform=iOS Simulator,name=iPhone 17 Pro' \
+    -only-testing:jejuonlTests
+  ```
+  - 결과: `** TEST SUCCEEDED **`
+  - xcresult: `totalTestCount: 25`, `passedTests: 25`, `failedTests: 0`, `skippedTests: 0`
+  - 구성: ScheduleEngineTests 11 (E1–E10 + next 04:00/toggle) / ScheduleCatalogTests 8 / WidgetTimelineDatesTests 3 / ClockTimeTests 3
+- 남긴 것:
+  - ContentView는 템플릿 Hello 화면 그대로. 오늘/주간 UI는 페이즈 3.
+  - AppGroupSettingsStore / NotificationScheduler 없음 (페이즈 3·5).
+  - 테스트는 `Bundle(for: CatalogBundleToken.self)`로 JSON을 읽음 (Bundle.module 없음).
+- 태그: snapshot/phase-2-schedule-engine
+- 오케스트레이터 재검증: 동일 명령, E1–E10·카탈로그·timeline·ClockTime 전부 passed, exit 0
+- 다음: 페이즈 3 — 오늘 / 이번 주 / 도시 세그먼트
+
 ## phase-1-skeleton (2026-08-14)
 
 - 한 일:

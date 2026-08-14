@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "2025-06-06.1",
+  "verifiedAt": "2026-07-13",
+  "timezone": "Asia/Seoul",
+  "sources": [
+    "https://jejucleanhouse.com/guide",
+    "https://www.jejusi.go.kr/field/eco/weekwaste.do",
+    "https://www.seogwipo.go.kr/recycle/index.htm"
+  ],
+  "window": {
+    "openHour": 15,
+    "openMinute": 0,
+    "closeHour": 4,
+    "closeMinute": 0
+  },
+  "alwaysOnItems": ["general", "food", "canMetal", "glass", "styrofoam"],
+  "cities": {
+    "jejuSi": {
+      "displayName": "제주시",
+      "effectiveFrom": "2025-06-06",
+      "weekdayRestrictionEnabled": true,
+      "notes": [
+        "투명페트병은 전용수거함에 별도 배출",
+        "창 시간 15:00–04:00은 제주시 공식 안내"
+      ],
+      "restrictedByWeekday": {
+        "mon": ["plastic", "clearPET"],
+        "tue": ["paper", "incombustible"],
+        "wed": ["plastic", "clearPET"],
+        "thu": ["paper", "vinyl"],
+        "fri": ["plastic", "clearPET"],
+        "sat": ["paper", "incombustible"],
+        "sun": ["plastic", "clearPET", "vinyl"]
+      }
+    },
+    "seogwipo": {
+      "displayName": "서귀포시",
+      "effectiveFrom": "2025-06-06",
+      "weekdayRestrictionEnabled": true,
+      "notes": [
+        "창 시간 15:00–04:00은 제주시 공식·도 보도와 같은 섬 공통값을 씀. 개소 예외는 v1 비범위",
+        "공식 요일표에 투명페트 칩 없음"
+      ],
+      "restrictedByWeekday": {
+        "mon": ["plastic"],
+        "tue": ["paper", "incombustible"],
+        "wed": ["plastic"],
+        "thu": ["paper", "vinyl"],
+        "fri": ["plastic"],
+        "sat": ["paper", "incombustible"],
+        "sun": ["plastic", "vinyl"]
+      }
+    }
+  }
+}

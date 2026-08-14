@@ -14,11 +14,11 @@
 | 제품 | 오늘 뭐 버려? / jejuonl — 제주 클린하우스 요일제 위젯 우선 앱 |
 | 설계 | `docs/design.md` Approved (2026-08-13), 식별자는 페이즈 1 실제 값으로 수정 |
 | GUI 시안 | 잠김 |
-| 코드 | 페이즈 1 뼈대. `jejuonl/jejuonl.xcodeproj`. 엔진·화면 없음 |
+| 코드 | 페이즈 2 엔진 완료. 화면은 아직 템플릿 Hello |
 | Git | `https://github.com/meeeeeca2/jeju_onl.git` (`origin/main`) |
-| 다음 한 가지 | **페이즈 2 — ScheduleEngine + 카탈로그 + 단위 테스트** (계획 승인 후) |
+| 다음 한 가지 | **페이즈 3 — 오늘 / 이번 주 / 도시 세그먼트** (계획 승인 후) |
 
-**아직 하지 말 것:** 승인 없이 구현 위임하지 않는다. `pbxproj`를 손으로 쓰지 않는다. 페이즈 1 태그 없이 페이즈 2 UI/엔진을 시작하지 않는다.
+**아직 하지 말 것:** 승인 없이 구현 위임하지 않는다. 페이즈 2 태그 없이 페이즈 3 UI를 시작하지 않는다.
 
 ---
 
@@ -43,7 +43,8 @@
 Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mockups/.
 페이즈 1 뼈대 완료 (태그 snapshot/phase-1-skeleton). Xcode는 jejuonl/jejuonl.xcodeproj.
 식별자: kr.jejuonl.jejuonl / kr.jejuonl.jejuonl.jejuonlWidget / group.kr.jejuonl.shared.
-다음 한 가지: 페이즈 2 ScheduleEngine. 구현 전에 계획만 보여 주고 승인 기다려.
+페이즈 2 완료 (태그 snapshot/phase-2-schedule-engine). 단위 테스트 25개 초록.
+다음 한 가지: 페이즈 3 오늘/주간 UI. 구현 전에 계획만 보여 주고 승인 기다려.
 ```
 
 ---
@@ -90,7 +91,7 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 | `jejuonl/jejuonl.xcodeproj` | 앱+위젯 템플릿 |
 | `jejuonl/jejuonl/` | 앱 소스 (지금 ContentView 빈 화면) |
 | `jejuonl/jejuonlWidget/` | 위젯 템플릿 + ConfigurationAppIntent |
-| `Shared/jejuonlCore/` | 빈 자리. 페이즈 2 |
+| `Shared/jejuonlCore/` | ScheduleEngine + schedule_v1.json (앱·위젯·테스트 공유) |
 
 시안 화면: `home`, `today-open`, `today-wait`, `today-jeju`, `week`, `settings`, `notify-settings`, `onb-city`, `onb-notify`, `onb-widget`, `widget-edit`, `lock-notify`, `today-dark`.
 
@@ -104,7 +105,7 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 | --- | --- | --- | --- |
 | 0 | 설계 + GUI 시안 | — | **완료** |
 | 1 | Xcode 뼈대, gitignore, App Groups 시도 | `snapshot/phase-1-skeleton` | **완료** |
-| 2 | schedule JSON + ScheduleEngine + 단위 테스트 | `snapshot/phase-2-schedule-engine` | 대기 |
+| 2 | schedule JSON + ScheduleEngine + 단위 테스트 | `snapshot/phase-2-schedule-engine` | **완료** |
 | 3 | 오늘 / 이번 주 / 도시 세그먼트 | `snapshot/phase-3-app-today-week` | 대기 |
 | 4 | Small·Medium·Large 위젯 | `snapshot/phase-4-widget` | 대기 |
 | 5 | 로컬 알림 + 알림 설정 | `snapshot/phase-5-notifications` | 대기 |
@@ -133,6 +134,19 @@ Orchestrator.md 읽고 이어서. 설계는 docs/design.md, 시안은 docs/mocku
 ---
 
 ## 세션 로그
+
+### 2026-08-14 — 페이즈 2 완료
+
+- Shared/jejuonlCore + schedule_v1.json + jejuonlTests E1–E10.
+- 오케스트레이터가 테스트 재실행: 25 passed / 0 failed (iPhone 17 Pro 시뮬).
+- UI·알림·설정 저장소 없음. 번들 ID 유지.
+- 다음: 페이즈 3 계획.
+
+### 2026-08-14 — 페이즈 2 계획 제시, 승인 대기
+
+- 범위: Shared/jejuonlCore 타입·JSON·ScheduleEngine·SeoulCalendar·timelineDates, jejuonlTests에 E1–E10.
+- 안 함: 오늘/주간 UI, 위젯 얼굴, 알림 스케줄러, 폴더를 App/Widget로 이사.
+- 테스트는 기존 jejuonlTests 타깃. JSON은 앱·위젯·테스트 세 곳 멤버십.
 
 ### 2026-08-14 — 페이즈 1 완료
 
