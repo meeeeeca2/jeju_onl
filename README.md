@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/mockups/app-icon.jpg" width="128" alt="오늘 뭐 버려? 앱 아이콘">
+  <img src="docs/readme/app-icon.png" width="128" alt="오늘 뭐 버려? 앱 아이콘">
 </p>
 
 <h1 align="center">오늘 뭐 버려?</h1>
@@ -11,8 +11,7 @@
 
 <p align="center">
   <a href="docs/INSTALL.md">설치</a> ·
-  <a href="docs/design.md">설계</a> ·
-  <a href="docs/mockups/">시안</a>
+  <a href="docs/design.md">설계</a>
 </p>
 
 ---
@@ -25,9 +24,9 @@
 앱스토어·계정·서버가 없습니다. 맥의 Xcode로 본인 아이폰에 올리면 되고, 설치 후에는 **오프라인**으로 동작합니다.
 
 <p align="center">
-  <img src="docs/mockups/png/widget-small.jpg" width="260" alt="작은 홈 화면 위젯">
-  <img src="docs/mockups/png/today.jpg" width="260" alt="오늘 화면">
-  <img src="docs/mockups/png/week.png" width="260" alt="이번 주 화면">
+  <img src="docs/readme/notify.jpg" width="260" alt="알림 설정">
+  <img src="docs/readme/today.jpg" width="260" alt="오늘 화면">
+  <img src="docs/readme/widget.jpg" width="260" alt="작은 홈 화면 위젯">
 </p>
 
 ## 위젯
@@ -81,7 +80,6 @@
 | --- | --- |
 | [docs/INSTALL.md](docs/INSTALL.md) | 비개발자 설치 |
 | [docs/design.md](docs/design.md) | 잠긴 설계 |
-| [docs/mockups/](docs/mockups/) | GUI 시안 HTML·PNG |
 | [docs/PROGRESS.md](docs/PROGRESS.md) | 페이즈·개선 기록 |
 
 ## 면책

@@ -25,3 +25,6 @@ playground.xcworkspace
 
 # 사용자 첨부 스크린샷 (인수인계용, 커밋 안 함)
 myscreenshot/
+
+# GUI 시안 (로컬만, GitHub 미게시)
+docs/mockups/

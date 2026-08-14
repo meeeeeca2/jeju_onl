@@ -9,6 +9,11 @@
 - 작은 칸 `지금`/`금`을 헤더만 가로 6pt 더 들여 모서리에서 뗌. 사진 크기는 GeometryReader 유지.
 - 2–3개 팬도 `WidgetItemWithNameBadge` (겹침·잘림 허용). 칸 밖 `offset` 없음.
 
+## readme-device-shots-drop-mockups (2026-08-14)
+
+- README 세 장을 기기 캡처(알림·오늘·작은 위젯)로 교체. `docs/readme/`.
+- `docs/mockups/`는 `.gitignore`. GitHub에서 시안 폴더 제거.
+
 ## readme-current-product (2026-08-14)
 
 - GitHub README를 현재 위젯·오늘 화면·품목 시트·설정 선택에 맞게 고침. 기기 스크린샷 `docs/mockups/png/widget-small.jpg`, `today.jpg`.
