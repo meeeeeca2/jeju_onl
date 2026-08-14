@@ -1,5 +1,31 @@
 # Progress
 
+## phase-5-notifications (2026-08-14)
+
+- 한 일:
+  - Core: `NotificationCopy` (한국어 제목·본문·품목 표시명 투명페트병/종이류/비닐류), `NotificationPlanner` (순수, D0=현재 배출일부터 7일, Seoul `DateComponents`), `NotificationScheduler` (`UNCalendarNotificationTrigger` `repeats: false`, pending `jejubin.*` 삭제 후 추가. 배지 없음).
+  - SET-2: 설정 → 알림 push. 틸 유리, 한라봉 마스터 토글, 열리기 전 시각(04:00–14:59), 저녁에도(17:00–23:30), 품목 체크(서귀포 PET 비활성+`제주시만`), `매일 품목도`. 거부 배너+설정 앱, 0건이면 `다시 예약`.
+  - `AppModel`: 알림 prefs 저장+reschedule. `selectCity`·`scenePhase == .active`·타임존 변경 시 reschedule. 카테고리 `JEJUBIN_REMIND` + `OPEN_TODAY` 한 번 등록. 권한 `.notDetermined` 요청, `.denied`는 마스터 off+배너, `.provisional`은 허용.
+  - 도시는 항상 `settings.city`. 위젯 Intent는 알림에 안 씀. `NSUserNotificationsUsageDescription` 추가. INSTALL “알림을 쓰려면 일주일에 한 번은 앱을 여세요.”
+- 검증:
+  ```
+  export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+  xcodebuild test -project jejuonl/jejuonl.xcodeproj -scheme jejuonl \
+    -destination 'platform=iOS Simulator,name=iPhone 17 Pro' \
+    -only-testing:jejuonlTests
+  xcodebuild build -project jejuonl/jejuonl.xcodeproj -scheme jejuonl \
+    -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+  ```
+  - 결과: `** TEST SUCCEEDED **` / `** BUILD SUCCEEDED **`
+  - xcresult: `totalTestCount: 40`, `passedTests: 40`, `failedTests: 0`, `skippedTests: 0`
+  - 구성: ScheduleEngineTests 11 / ScheduleCatalogTests 8 / WidgetTimelineDatesTests 3 / ClockTimeTests 3 / CountdownFormatTests 7 / NotificationPlannerTests 8
+  - 위젯 스킴(jejuonlWidgetExtension)은 실행하지 않음.
+  - 오케스트레이터 재검증: xcodebuild test exit 0.
+- 남긴 것:
+  - 온보딩 풀스크린(페이즈 6). 푸시 서버·배지·BGAppRefresh·반복 트리거 없음.
+- 태그: snapshot/phase-5-notifications (커밋은 오케스트레이터)
+- 다음: 페이즈 6 — 온보딩 + 설치 가이드
+
 ## app-icon-and-widget-plate (2026-08-14)
 
 - 앱 아이콘: `docs/mockups/app-icon.jpg`를 아이콘 판(705²)으로 잘라 1024 PNG `jejuonl/jejuonl/Assets.xcassets/AppIcon.appiconset/AppIcon.png`. Contents.json 기본·dark·tinted 1024 슬롯 모두 같은 파일명. 빈 유리 판 아이콘 해소.

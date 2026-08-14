@@ -3,8 +3,19 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(AppModel.self) private var model
     @State private var showsCityPicker = false
+    @State private var showsNotifications = false
 
     var body: some View {
+        NavigationStack {
+            settingsHome
+                .navigationDestination(isPresented: $showsNotifications) {
+                    NotificationSettingsView()
+                }
+                .toolbar(showsNotifications ? .automatic : .hidden, for: .navigationBar)
+        }
+    }
+
+    private var settingsHome: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 ScreenDateLine(text: "설정")
@@ -24,11 +35,17 @@ struct SettingsView: View {
                     Divider()
                         .background(Color.white.opacity(0.08))
 
-                    settingsRow(
-                        title: "알림",
-                        value: SeoulClockText.clock(model.settings.notifications.preOpenTime)
-                    )
+                    Button {
+                        showsNotifications = true
+                    } label: {
+                        settingsRow(
+                            title: "알림",
+                            value: SeoulClockText.clock(model.settings.notifications.preOpenTime)
+                        )
+                    }
+                    .buttonStyle(.plain)
                     .accessibilityLabel("알림 \(SeoulClockText.clock(model.settings.notifications.preOpenTime))")
+                    .accessibilityHint("알림 설정을 엽니다")
                 }
                 .appGlass(in: RoundedRectangle(cornerRadius: 20, style: .continuous))
 
