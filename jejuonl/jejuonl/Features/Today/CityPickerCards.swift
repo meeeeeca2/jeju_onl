@@ -39,13 +39,11 @@ struct CityPickerCards: View {
                         HStack(spacing: 10) {
                             card(
                                 city: .jejuSi,
-                                tag: nil,
                                 subtitle: compactCopy ? "투명페트 전용함" : "투명페트 전용함 요일제",
                                 side: side
                             )
                             card(
                                 city: .seogwipo,
-                                tag: "집",
                                 subtitle: compactCopy ? "플라스틱으로 표기" : "공식 안내는 플라스틱으로 표기",
                                 side: side
                             )
@@ -63,17 +61,12 @@ struct CityPickerCards: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private func card(city: CityID, tag: String?, subtitle: String, side: CGFloat) -> some View {
+    private func card(city: CityID, subtitle: String, side: CGFloat) -> some View {
         let isSelected = selected == city
         return Button {
             onSelect(city)
         } label: {
             VStack(alignment: .leading, spacing: 6) {
-                if let tag {
-                    Text(tag)
-                        .font(.caption2.weight(.bold))
-                        .foregroundStyle(Palette.hallabongInk)
-                }
                 Text(city.koreanName)
                     .font(.headline)
                     .foregroundStyle(Palette.ink)
@@ -100,16 +93,9 @@ struct CityPickerCards: View {
         }
         .buttonStyle(.plain)
         .frame(width: side, height: side)
-        .accessibilityLabel(cardLabel(city: city, tag: tag, subtitle: subtitle))
-        .accessibilityHint(isSelected ? "선택됨" : "탭해서 집 도시로 고르기")
+        .accessibilityLabel("\(city.koreanName), \(subtitle)")
+        .accessibilityHint(isSelected ? "선택됨" : "탭해서 고르기")
         .accessibilityAddTraits(isSelected ? .isSelected : [])
-    }
-
-    private func cardLabel(city: CityID, tag: String?, subtitle: String) -> String {
-        if let tag {
-            return "\(city.koreanName), \(tag), \(subtitle)"
-        }
-        return "\(city.koreanName), \(subtitle)"
     }
 }
 
