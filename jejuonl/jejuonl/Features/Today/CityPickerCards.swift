@@ -52,11 +52,13 @@ struct CityPickerCards: View {
                         }
                     }
                 }
-            Text(compactCopy ? "다른 시 → 위젯을 길게 눌러 바꾸기" : "다른 시에 가면 홈 화면 위젯을 길게 눌러 도시를 바꾸세요.")
-                .font(.caption)
-                .foregroundStyle(Palette.sea)
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(.top, 2)
+            if showsHeading {
+                Text("다른 시에 가면 홈 화면 위젯을 길게 눌러 도시를 바꾸세요.")
+                    .font(.caption)
+                    .foregroundStyle(Palette.sea)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.top, 2)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
