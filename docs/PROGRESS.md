@@ -1,5 +1,10 @@
 # Progress
 
+## item-sheet-43-and-full-captions (2026-08-14)
+
+- 품목 시트 히어로 높이 240 → 가로:세로 **4:3**.
+- 오늘 `매일` 줄은 짧은 이름(`스티로`) 대신 풀네임(`스티로폼`). 캡션이 아이콘 폭에 잘리지 않게 `minWidth` + `fixedSize`.
+
 ## ui-scale-item-tiles (2026-08-14)
 
 - 품목 타일·캡션을 눈에 띄게 키움 (`ItemTile.SizeKind`: large 188/40/16, regular 132/28/15, daily 76/20/13, week 58/16/13). daily/week 간격 6·8.

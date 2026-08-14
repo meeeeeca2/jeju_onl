@@ -19,8 +19,8 @@ struct ItemDetailSheet: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     Color.clear
-                        .frame(height: 240)
                         .frame(maxWidth: .infinity)
+                        .aspectRatio(4 / 3, contentMode: .fit)
                         .overlay {
                             Image(item.assetName)
                                 .resizable()

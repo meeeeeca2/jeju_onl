@@ -138,7 +138,7 @@ struct TodayView: View {
         ScrollView(.horizontal) {
             HStack(alignment: .bottom, spacing: 10) {
                 ForEach(items, id: \.self) { item in
-                    ItemTile(item: item, kind: .daily, useShortName: true, onSelect: { showItem(item) })
+                    ItemTile(item: item, kind: .daily, onSelect: { showItem(item) })
                 }
             }
         }

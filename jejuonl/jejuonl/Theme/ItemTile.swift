@@ -74,9 +74,9 @@ struct ItemTile: View {
                     .font(.system(size: kind.captionSize, weight: .medium))
                     .foregroundStyle(kind == .daily ? Palette.inkDim : Palette.ink)
                     .lineLimit(1)
-                    .minimumScaleFactor(0.8)
+                    .fixedSize(horizontal: true, vertical: false)
             }
         }
-        .frame(width: kind.side)
+        .frame(minWidth: kind.side)
     }
 }
